@@ -1,0 +1,181 @@
+{
+  "version": "1.0.0",
+  "created": "2025-01-04T22:00:00.000Z",
+  "updated": "2025-01-04T22:00:00.000Z",
+  "project": {
+    "name": "Sitio Web Bytes & Builds",
+    "description": "Sitio web institucional profesional para comunicar servicios y generar leads",
+    "tags": {
+      "master": {
+        "description": "Desarrollo principal del sitio web",
+        "tasks": [
+          {
+            "id": "1",
+            "title": "Configuración inicial del proyecto",
+            "description": "Configurar la estructura base del proyecto Next.js con todas las dependencias necesarias",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Instalar Next.js con App Router\n- Configurar Tailwind CSS con paleta de colores corporativos\n- Instalar shadcn/ui y componentes base\n- Configurar TypeScript y zod\n- Crear estructura de carpetas\n- Configurar eslint y prettier",
+            "testStrategy": "Verificar que el proyecto compile sin errores y que todos los estilos se apliquen correctamente",
+            "dependencies": [],
+            "subtasks": []
+          },
+          {
+            "id": "2",
+            "title": "Configuración de componentes base y layout",
+            "description": "Crear componentes reutilizables y layout principal del sitio",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Crear componentes UI base (Button, Card, etc.)\n- Configurar Header con navegación responsive\n- Crear Footer con información de contacto\n- Configurar layout principal\n- Implementar sistema de colores corporativos",
+            "testStrategy": "Verificar navegación responsive en diferentes dispositivos y que todos los enlaces funcionen",
+            "dependencies": ["1"],
+            "subtasks": []
+          },
+          {
+            "id": "3",
+            "title": "Página Home - Sección Hero",
+            "description": "Implementar la sección hero de la página principal con mensaje de valor",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Crear sección hero con titular 'Tecnología aplicada a negocios reales'\n- Implementar subtítulo y descripción de valor\n- Agregar botones CTA principales\n- Implementar iconos y elementos visuales\n- Optimizar para SEO",
+            "testStrategy": "Verificar que el mensaje sea claro, los CTAs funcionen y sea responsive",
+            "dependencies": ["2"],
+            "subtasks": []
+          },
+          {
+            "id": "4",
+            "title": "Página Home - Sección Problema",
+            "description": "Crear sección que identifica los dolores que resuelve Bytes & Builds",
+            "status": "pending",
+            "priority": "medium",
+            "details": "- Implementar 4 problemas principales identificados\n- Usar iconos representativos para cada problema\n- Crear diseño de cards atractivo\n- Mensaje final que conecte con la solución",
+            "testStrategy": "Verificar que los problemas resuenen con el público objetivo",
+            "dependencies": ["3"],
+            "subtasks": []
+          },
+          {
+            "id": "5",
+            "title": "Página Home - Sección Servicios",
+            "description": "Implementar sección de servicios con los 3 servicios principales",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Desarrollo Web: Features y beneficios\n- Automatización: Procesos y resultados\n- Integraciones: Sistemas y dashboards\n- Diseño de cards con iconos y CTAs\n- Links a página de servicios detallada",
+            "testStrategy": "Verificar que cada servicio sea claro y los enlaces funcionen correctamente",
+            "dependencies": ["4"],
+            "subtasks": []
+          },
+          {
+            "id": "6",
+            "title": "Página Home - Sección Proceso de Trabajo",
+            "description": "Mostrar el proceso de 4 pasos de trabajo de Bytes & Builds",
+            "status": "pending",
+            "priority": "medium",
+            "details": "- 4 pasos: Análisis, Estrategia, Desarrollo, Entrega\n- Diseño visual con línea conectora\n- Iconos representativos para cada paso\n- Descripción clara de cada fase",
+            "testStrategy": "Verificar que el proceso sea fácil de entender y visualmente atractivo",
+            "dependencies": ["5"],
+            "subtasks": []
+          },
+          {
+            "id": "7",
+            "title": "Página Home - Casos de Éxito",
+            "description": "Implementar sección de casos de éxito con estructura problema-solución-resultado",
+            "status": "pending",
+            "priority": "high",
+            "details": "- 3 casos: Restaurante, Tienda online, CRM médico\n- Estructura: Problema → Solución → Resultados\n- Métricas específicas y verificables\n- Diseño de cards con categorías\n- Link a página de proyectos",
+            "testStrategy": "Verificar que los resultados sean creíbles y las métricas claras",
+            "dependencies": ["6"],
+            "subtasks": []
+          },
+          {
+            "id": "8",
+            "title": "Página Home - CTA Final",
+            "description": "Crear sección de llamada a la acción final poderosa",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Titular fuerte y directo\n- Dos opciones de CTA: Comenzar proyecto y WhatsApp\n- Elementos de confianza: gratuita, sin compromiso, 24h\n- Diseño visual impactante con colores corporativos",
+            "testStrategy": "Verificar que los CTAs redirijan correctamente y sean visualmente prominentes",
+            "dependencies": ["7"],
+            "subtasks": []
+          },
+          {
+            "id": "9",
+            "title": "Página Servicios completa",
+            "description": "Desarrollar página detallada de servicios con información completa",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Detalle completo de cada servicio\n- Tecnologías utilizadas\n- Proceso de trabajo específico\n- Precios o información de contacto\n- CTAs específicos por servicio\n- Anclas para navegación interna",
+            "testStrategy": "Verificar navegación interna, CTAs y que toda la información sea clara",
+            "dependencies": ["2"],
+            "subtasks": []
+          },
+          {
+            "id": "10",
+            "title": "Página Proyectos",
+            "description": "Crear página de casos de estudio detallados",
+            "status": "pending",
+            "priority": "medium",
+            "details": "- 2-3 casos destacados en detalle\n- Estructura: Problema → Solución → Resultado → Testimonial\n- Imágenes o capturas de pantalla\n- Tecnologías utilizadas\n- Métricas de impacto\n- CTA para proyectos similares",
+            "testStrategy": "Verificar que los casos sean convincentes y detallados",
+            "dependencies": ["2"],
+            "subtasks": []
+          },
+          {
+            "id": "11",
+            "title": "Página Sobre Nosotros",
+            "description": "Desarrollar página sobre la empresa con tono profesional",
+            "status": "pending",
+            "priority": "medium",
+            "details": "- Historia y filosofía de Bytes & Builds\n- Enfoque y metodología de trabajo\n- Pilares y valores reales (sin inflación)\n- Tono sobrio y directo\n- CTA hacia contacto",
+            "testStrategy": "Verificar que el tono sea profesional y la información sea creíble",
+            "dependencies": ["2"],
+            "subtasks": []
+          },
+          {
+            "id": "12",
+            "title": "Página Contacto",
+            "description": "Implementar página de contacto con múltiples opciones",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Formulario de contacto funcional\n- Integración chatbot Chatbase\n- Información de contacto: email, ubicación, horarios\n- Mapa o información de ubicación en Bogotá\n- Validación de formulario con zod",
+            "testStrategy": "Verificar que el formulario funcione, chatbot responda y toda la información sea correcta",
+            "dependencies": ["2"],
+            "subtasks": []
+          },
+          {
+            "id": "13",
+            "title": "Configuración SEO técnico",
+            "description": "Implementar optimización SEO técnica en todas las páginas",
+            "status": "pending",
+            "priority": "medium",
+            "details": "- Metadatos específicos por página\n- Open Graph tags\n- Structured data\n- Sitemap.xml\n- Robots.txt\n- Optimización de imágenes\n- Core Web Vitals",
+            "testStrategy": "Verificar con herramientas SEO que todos los metadatos estén correctos",
+            "dependencies": ["8", "9", "10", "11", "12"],
+            "subtasks": []
+          },
+          {
+            "id": "14",
+            "title": "Integración Google Analytics",
+            "description": "Configurar Google Analytics para seguimiento de conversiones",
+            "status": "pending",
+            "priority": "medium",
+            "details": "- Configurar GA4\n- Eventos de conversión en formularios\n- Seguimiento de CTAs\n- Goals y objetivos\n- Configuración en producción",
+            "testStrategy": "Verificar que los eventos se registren correctamente en GA",
+            "dependencies": ["12"],
+            "subtasks": []
+          },
+          {
+            "id": "15",
+            "title": "Testing, optimización y deployment",
+            "description": "Testing completo, optimización de rendimiento y preparación para producción",
+            "status": "pending",
+            "priority": "high",
+            "details": "- Testing responsive en todos los dispositivos\n- Optimización de imágenes y assets\n- Configuración para VPS con EasyPanel\n- Testing de velocidad y Core Web Vitals\n- Documentación de administración\n- Backup y monitoreo",
+            "testStrategy": "Verificar que el sitio funcione perfectamente en producción",
+            "dependencies": ["13", "14"],
+            "subtasks": []
+          }
+        ]
+      }
+    }
+  }
+}

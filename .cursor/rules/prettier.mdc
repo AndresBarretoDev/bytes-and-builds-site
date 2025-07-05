@@ -1,0 +1,172 @@
+# **Prettier Configuration - Code Formatting Standards**
+
+Esta regla define los estándares de formateo de código para el proyecto Bytes & Builds usando Prettier con las mejores prácticas profesionales para 2024.
+
+## **Configuración Prettier**
+
+### **Reglas Principales**
+
+- **Semi**: `true` - Siempre usar punto y coma
+- **Single Quote**: `true` - Usar comillas simples en lugar de dobles
+- **Print Width**: `80` - Máximo 80 caracteres por línea
+- **Tab Width**: `2` - Usar 2 espacios para indentación
+- **Trailing Comma**: `es5` - Comas finales donde ES5 las soporta
+- **Arrow Parens**: `avoid` - Evitar paréntesis en arrow functions de un parámetro
+
+### **Integración Tailwind CSS**
+
+- **Plugin**: `prettier-plugin-tailwindcss` - Ordena automáticamente las clases de Tailwind
+- **Clases ordenadas**: Las clases se ordenan según la estructura recomendada de Tailwind
+
+## **Scripts NPM Disponibles**
+
+```bash
+# Formatear todos los archivos
+npm run format
+
+# Verificar formato sin cambios
+npm run format:check
+```
+
+## **Configuración VSCode**
+
+El archivo `.vscode/settings.json` incluye:
+
+- **Format on Save**: Automático
+- **Default Formatter**: Prettier para todos los tipos de archivo
+- **ESLint Auto Fix**: Al guardar
+
+## **Archivos Excluidos**
+
+El `.prettierignore` excluye:
+
+- `node_modules/`
+- `.next/` y otros directorios de build
+- Archivos de configuración específicos
+- Logs y cache
+- Variables de entorno
+
+## **Mejores Prácticas**
+
+### **✅ DO: Ejemplos Correctos**
+
+```typescript
+// ✅ Uso correcto de comillas simples y punto y coma
+const message = 'Hola mundo';
+
+// ✅ Arrow function sin paréntesis para un parámetro
+const double = n => n * 2;
+
+// ✅ Trailing comma en objetos y arrays
+const config = {
+  name: 'Bytes & Builds',
+  version: '1.0.0',
+  features: ['web', 'automation'],
+};
+
+// ✅ Clases Tailwind ordenadas automáticamente
+<div className="flex items-center justify-between bg-white p-4 shadow-lg">
+  <h1 className="text-xl font-bold">Título</h1>
+</div>
+```
+
+### **❌ DON'T: Ejemplos Incorrectos**
+
+```typescript
+// ❌ Evitar comillas dobles cuando no son necesarias
+const message = "Hola mundo"
+
+// ❌ Evitar paréntesis innecesarios
+const double = (n) => n * 2
+
+// ❌ No omitir trailing commas
+const config = {
+  name: 'Bytes & Builds',
+  version: '1.0.0'
+}
+
+// ❌ Clases Tailwind desordenadas
+<div className="p-4 flex shadow-lg bg-white justify-between items-center">
+```
+
+## **Workflow de Desarrollo**
+
+### **Pre-commit Setup**
+
+1. **Husky Hook**: El pre-commit hook ejecuta automáticamente format:check
+2. **CI/CD**: GitHub Actions verifica formato en PRs
+3. **Editor**: VSCode formatea automáticamente al guardar
+
+### **Comandos de Desarrollo**
+
+```bash
+# Antes de commit
+npm run format
+
+# Para verificar en CI
+npm run format:check
+
+# Lint + Format (combo recomendado)
+npm run lint && npm run format
+```
+
+## **Integración con Otras Herramientas**
+
+### **ESLint Compatibility**
+
+- Prettier maneja **formateo visual**
+- ESLint maneja **calidad de código**
+- Sin conflictos entre ambas herramientas
+
+### **Tailwind Integration**
+
+- **Automático**: Las clases se ordenan según utility-first
+- **Consistente**: Mismo orden en todo el proyecto
+- **Legible**: Clases agrupadas lógicamente
+
+## **Troubleshooting**
+
+### **Problemas Comunes**
+
+1. **Archivo no se formatea**
+   - Verificar que esté incluido en `.prettierignore`
+   - Confirmar extensión de archivo soportada
+
+2. **Conflicto con ESLint**
+   - Verificar que eslint-config-prettier esté instalado
+   - Revisar orden en .eslintrc.json
+
+3. **VSCode no formatea**
+   - Instalar extensión "Prettier - Code formatter"
+   - Verificar .vscode/settings.json
+
+### **Soluciones Rápidas**
+
+```bash
+# Resetear formato de todo el proyecto
+npm run format
+
+# Verificar configuración
+npx prettier --check src/
+
+# Debug específico
+npx prettier --write src/app/page.tsx
+```
+
+## **Beneficios del Sistema**
+
+### **Para el Equipo**
+
+- **Consistencia**: Mismo estilo en todo el proyecto
+- **Productividad**: Sin discusiones sobre formato en code reviews
+- **Calidad**: Código más legible y mantenible
+
+### **Para el Proyecto**
+
+- **Profesional**: Cumple estándares industriales
+- **Escalable**: Fácil onboarding de nuevos developers
+- **Mantenible**: Reduce deuda técnica visual
+
+---
+
+**Nota**: Esta configuración sigue las mejores prácticas de la comunidad React/Next.js 2024 y es compatible con las reglas establecidas en el `.cursorrules` del proyecto.

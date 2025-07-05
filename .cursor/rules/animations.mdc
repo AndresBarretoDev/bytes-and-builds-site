@@ -1,0 +1,337 @@
+# **Animation System - Motion Integration**
+
+Esta regla define el sistema de animaciones para el proyecto Bytes & Builds usando **Motion** (la nueva versión de Framer Motion) con componentes reutilizables y patrones consistentes.
+
+## **Sobre Motion**
+
+**Motion** es la evolución de Framer Motion con un **motor híbrido** que combina:
+
+- ✅ **Performance acelerada por hardware** de animaciones nativas del navegador
+- ✅ **Potencial ilimitado** de animaciones JavaScript
+- ✅ **Confianza de Framer** para sus animaciones no-code
+
+Documentación oficial: [https://motion.dev/docs/react-quick-start](https://motion.dev/docs/react-quick-start)
+
+## **Sistema de Animaciones**
+
+### **Biblioteca Base ([src/lib/animations.ts](mdc:src/lib/animations.ts))**
+
+#### **Instalación y Configuración**
+
+```bash
+npm install motion
+```
+
+```typescript
+// ✅ DO: Nueva importación de Motion
+import { motion, Variants, Easing } from 'motion/react';
+
+// ❌ DON'T: Importación antigua de Framer Motion
+import { motion } from 'framer-motion';
+```
+
+#### **Configuraciones de Tiempo**
+
+```typescript
+ANIMATION_DURATION = {
+  fast: 0.2, // Elementos pequeños, feedback inmediato
+  normal: 0.3, // Uso general
+  slow: 0.5, // Elementos importantes, hero sections
+  slower: 0.8, // Transiciones de página
+};
+```
+
+#### **Curvas de Easing**
+
+```typescript
+EASING = {
+  ease: [0.25, 0.1, 0.25, 1], // Uso general
+  easeIn: [0.4, 0, 1, 1], // Elementos que salen
+  easeOut: [0, 0, 0.2, 1], // Elementos que entran
+  easeInOut: [0.4, 0, 0.2, 1], // Transiciones complejas
+  bounce: [0.175, 0.885, 0.32, 1.275], // Elementos divertidos
+};
+```
+
+### **Tipos de Animaciones Disponibles**
+
+#### **✨ Fade Animations**
+
+- `fadeIn` - Aparece gradualmente
+- `fadeInUp` - Aparece desde abajo
+- `fadeInDown` - Aparece desde arriba
+- `fadeInLeft` - Aparece desde la izquierda
+- `fadeInRight` - Aparece desde la derecha
+
+#### **📈 Scale Animations**
+
+- `scaleIn` - Escala desde pequeño a normal
+- `scaleInBounce` - Escala con efecto bounce
+- `hoverScale` - Para interacciones hover/tap
+
+#### **↗️ Slide Animations**
+
+- `slideInUp` - Desliza desde abajo
+- `slideInDown` - Desliza desde arriba
+- `slideInLeft` - Desliza desde la izquierda
+- `slideInRight` - Desliza desde la derecha
+
+#### **🎭 Stagger Animations**
+
+- `staggerContainer` - Contenedor para animaciones escalonadas
+- `staggerItem` - Elementos individuales en secuencia
+
+## **Componentes Reutilizables ([src/components/ui/animated.tsx](mdc:src/components/ui/animated.tsx))**
+
+### **Uso Básico**
+
+#### **Importación Correcta**
+
+```tsx
+// ✅ DO: Nueva importación de Motion
+import { FadeIn, FadeInUp, FadeInLeft } from '@/components/ui/animated';
+
+// Internamente usa:
+import { motion } from 'motion/react';
+```
+
+#### **Fade Animations**
+
+```tsx
+// ✅ DO: Uso básico
+<FadeIn>
+  <div>Contenido que aparece</div>
+</FadeIn>
+
+// ✅ DO: Con delay y duración personalizada
+<FadeInUp delay={0.3} duration="slow">
+  <h1>Título principal</h1>
+</FadeInUp>
+
+// ✅ DO: Con clases CSS
+<FadeInLeft className="bg-card p-6" delay={0.5}>
+  <div>Tarjeta animada</div>
+</FadeInLeft>
+```
+
+#### **Animaciones Interactivas**
+
+```tsx
+import { HoverScale, CardHover, ButtonScale } from '@/components/ui/animated';
+
+// ✅ DO: Botones con animación
+<ButtonScale onClick={() => console.log('clicked')}>
+  <button className="btn-primary">
+    Click me
+  </button>
+</ButtonScale>
+
+// ✅ DO: Tarjetas con hover
+<CardHover className="p-6 border rounded-lg">
+  <div>Contenido de la tarjeta</div>
+</CardHover>
+
+// ✅ DO: Elementos con hover simple
+<HoverScale>
+  <div className="interactive-element">
+    Hover me
+  </div>
+</HoverScale>
+```
+
+#### **Animaciones Escalonadas**
+
+```tsx
+import { StaggerContainer, StaggerItem } from '@/components/ui/animated';
+
+// ✅ DO: Lista de elementos animados en secuencia
+<StaggerContainer>
+  <div className="grid grid-cols-3 gap-4">
+    <StaggerItem>
+      <div>Elemento 1</div>
+    </StaggerItem>
+    <StaggerItem>
+      <div>Elemento 2</div>
+    </StaggerItem>
+    <StaggerItem>
+      <div>Elemento 3</div>
+    </StaggerItem>
+  </div>
+</StaggerContainer>;
+```
+
+### **Presets Especializados**
+
+#### **Para Secciones Hero**
+
+```tsx
+import { HeroSlide } from '@/components/ui/animated';
+
+// ✅ DO: Animación optimizada para hero sections
+<HeroSlide delay={0.3}>
+  <div className="text-center">
+    <h1 className="text-display">Título Principal</h1>
+    <p className="text-body-large">Descripción</p>
+  </div>
+</HeroSlide>;
+```
+
+#### **Para Elementos Rápidos**
+
+```tsx
+import { QuickFade } from '@/components/ui/animated';
+
+// ✅ DO: Para elementos pequeños, badges, tooltips
+<QuickFade delay={0.1}>
+  <span className="badge">Nuevo</span>
+</QuickFade>;
+```
+
+#### **Para Transiciones de Página**
+
+```tsx
+import { PageTransition } from '@/components/ui/animated';
+
+// ✅ DO: Envolver contenido de página
+export default function Page() {
+  return (
+    <PageTransition>
+      <div>Contenido de la página</div>
+    </PageTransition>
+  );
+}
+```
+
+## **Ventajas del Motor Híbrido de Motion**
+
+### **🚀 Performance Mejorada**
+
+- **Hardware Acceleration**: Animaciones nativas del navegador cuando es posible
+- **JavaScript Fallback**: Para animaciones complejas que requieren más control
+- **Automatic Optimization**: Motion elige automáticamente el mejor método
+
+### **✨ Nuevas Capacidades**
+
+- **Scroll Animations**: `whileInView` para animaciones basadas en scroll
+- **Layout Animations**: Animaciones de layout con `layout` prop
+- **Gesture Recognition**: Hover, tap, focus, drag mejorados
+
+#### **Ejemplo de Animación de Scroll**
+
+```tsx
+// ✅ DO: Animación activada por scroll
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+>
+  <div>Contenido que aparece al hacer scroll</div>
+</motion.div>
+```
+
+## **Mejores Prácticas**
+
+### **✅ DO - Usar Animaciones**
+
+#### **1. Delays Escalonados**
+
+```tsx
+// ✅ DO: Secuencia lógica en delays
+<FadeInLeft delay={0.1}>
+  <Logo />
+</FadeInLeft>
+<FadeInRight delay={0.2}>
+  <ThemeToggle />
+</FadeInRight>
+<HeroSlide delay={0.3}>
+  <h1>Título</h1>
+</HeroSlide>
+```
+
+#### **2. Duraciones Apropiadas**
+
+```tsx
+// ✅ DO: Duraciones según importancia
+<QuickFade duration="fast">         // Elementos pequeños
+  <Badge>Nuevo</Badge>
+</QuickFade>
+
+<FadeInUp duration="normal">        // Contenido general
+  <Card>Contenido</Card>
+</FadeInUp>
+
+<HeroSlide duration="slow">         // Elementos principales
+  <h1>Hero Title</h1>
+</HeroSlide>
+```
+
+#### **3. Aprovechar el Motor Híbrido**
+
+```tsx
+// ✅ DO: Dejar que Motion optimice automáticamente
+<motion.div
+  animate={{ x: 100, opacity: 1 }}  // Hardware accelerated
+  transition={{ duration: 0.3 }}
+>
+  Contenido optimizado
+</motion.div>
+
+// ✅ DO: Usar whileInView para scroll
+<motion.div
+  whileInView={{ scale: 1 }}
+  initial={{ scale: 0.8 }}
+>
+  Aparece al hacer scroll
+</motion.div>
+```
+
+### **❌ DON'T - Evitar**
+
+#### **1. Sobre-animación**
+
+```tsx
+// ❌ DON'T: Demasiadas animaciones simultáneas
+<FadeIn>
+  <ScaleIn>
+    <SlideInUp>
+      <div>Contenido</div> // Solo una animación por elemento
+    </SlideInUp>
+  </ScaleIn>
+</FadeIn>
+```
+
+#### **2. Importaciones Incorrectas**
+
+```tsx
+// ❌ DON'T: Usar importación antigua
+import { motion } from 'framer-motion';
+
+// ✅ DO: Usar nueva importación
+import { motion } from 'motion/react';
+```
+
+## **Performance**
+
+### **Optimizaciones Automáticas del Motor Híbrido**
+
+- ✅ **Smart Acceleration**: Motion elige automáticamente entre animaciones nativas y JavaScript
+- ✅ **GPU Optimization**: Uso inteligente de `transform` y `opacity`
+- ✅ **Reduced Motion**: Respeta `prefers-reduced-motion`
+- ✅ **60fps Target**: Duraciones optimizadas para fluidez
+
+### **Consejos de Performance**
+
+- Usar `priority={true}` en elementos above-the-fold
+- Limitar animaciones simultáneas a 3-5 elementos
+- Aprovechar `whileInView` para animaciones de scroll eficientes
+- Dejar que Motion maneje la optimización automáticamente
+
+---
+
+**Documentación oficial:** [Motion for React](https://motion.dev/docs/react-quick-start)
+**Ejemplo completo:** Ver [src/app/page.tsx](mdc:src/app/page.tsx) para implementación de referencia.
+description:
+globs:
+alwaysApply: false
+
+---

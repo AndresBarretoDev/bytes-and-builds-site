@@ -1,0 +1,135 @@
+# Product Requirements Document (PRD)
+## Sitio Web Institucional - Bytes & Builds
+
+### INFORMACIÓN GENERAL
+**Empresa**: Bytes & Builds
+**Proyecto**: Sitio web institucional corporativo
+**Objetivo**: Comunicar servicios, generar leads y posicionar la marca como experta en desarrollo web y automatización para negocios.
+
+### DESCRIPCIÓN DEL PRODUCTO
+Sitio web profesional que comunica de forma clara qué hace Bytes & Builds, a quién ayuda y cómo trabaja. Enfocado en generar confianza y leads calificados sin sonar inflado ni genérico.
+
+### PROBLEMA A RESOLVER
+Las PYMES y empresas pequeñas en crecimiento necesitan:
+- Profesionalizar sus operaciones digitales
+- Automatizar procesos manuales que consumen tiempo
+- Integrar herramientas que ya usan
+- Sitios web que realmente generen resultados
+
+### PÚBLICO OBJETIVO
+- PYMES y empresas pequeñas en crecimiento
+- Negocios que ya operan digitalmente (WhatsApp, redes, Google Forms) pero necesitan profesionalizar
+- Empresas de servicios, tiendas que reciben pedidos/leads
+- Negocios que necesitan centralizar su operación
+
+### STACK TÉCNICO
+- Next.js con App Router
+- Tailwind CSS
+- shadcn/ui + 21st.dev (componentes)
+- TypeScript
+- zod (validación)
+- Google Analytics
+
+### PALETA DE COLORES
+- Primario: #34518d
+- Secundario: #1f2a44  
+- Accent: #00c7b7
+- Info: #3a77d3
+- Neutro: #fefefe
+
+### PÁGINAS PRINCIPALES
+
+#### 1. HOME
+**Objetivo**: Generar interés y leads
+**Secciones**:
+- Hero: Titular sobre tecnología aplicada a negocios
+- Problema: Dolor que resolvemos (tiempo perdido, leads perdidos, errores, costos)
+- Servicios: 3 bloques principales
+- Proceso: 4 pasos de trabajo
+- Casos de éxito: 3 casos reales
+- CTA: Llamada a acción fuerte
+
+#### 2. SERVICIOS
+**Objetivo**: Detallar cada servicio
+**Servicios**:
+1. **Desarrollo Web**: Sitios profesionales, catálogos, landings optimizadas
+2. **Automatización**: Procesos de WhatsApp, pedidos, leads, respuestas 24/7
+3. **Integraciones**: ERPs, CRMs, dashboards, reportes automáticos
+
+#### 3. PROYECTOS
+**Objetivo**: Mostrar credibilidad
+**Contenido**: 2-3 casos destacados como problema → solución → resultado
+
+#### 4. SOBRE NOSOTROS
+**Objetivo**: Generar confianza
+**Contenido**: Historia, forma de trabajo, pilares. Tono sobrio y directo.
+
+#### 5. CONTACTO
+**Objetivo**: Facilitar conversión
+**Elementos**:
+- Formulario directo
+- Chatbot de Chatbase
+- Email: contacto@bytesandbuilds.com
+- Ubicación: Bogotá, Colombia
+- Horarios: Lunes a viernes, 9:00 a.m. – 5:00 p.m.
+
+### CASOS DE ÉXITO
+1. **Automatización de pedidos para restaurante**
+   - Problema: Gestión manual causaba errores
+   - Solución: WhatsApp automatizado + panel control
+   - Resultado: 70% menos tiempo, 95% menos errores
+
+2. **Tienda online con catálogo inteligente**
+   - Problema: Catálogo estático sin conversiones
+   - Solución: Sitio optimizado + formularios
+   - Resultado: 300% más leads, 60% menos tiempo carga
+
+3. **Integración CRM servicios médicos**
+   - Problema: Datos dispersos
+   - Solución: Dashboard unificado
+   - Resultado: Visibilidad completa, 50% menos tiempo reportes
+
+### PROCESO DE TRABAJO (4 PASOS)
+1. **Análisis del negocio**: Entender operación actual
+2. **Estrategia técnica**: Diseñar solución eficiente
+3. **Desarrollo e implementación**: Construir con comunicación constante
+4. **Entrega y seguimiento**: Capacitar y brindar soporte
+
+### REQUISITOS TÉCNICOS
+- Diseño responsive
+- Optimización SEO técnica
+- Velocidad de carga superior
+- Google Analytics integrado
+- Formularios funcionales
+- Integración chatbot Chatbase
+
+### TONO Y ESTILO
+- Profesional, técnico y accesible
+- Enfocado a negocios que quieren ejecutar
+- Sin textos inflados ni mensajes vacíos
+- Diseño limpio, sobrio, premium
+- Sin animaciones invasivas
+
+### EXCLUSIONES
+- Blog o contenido editorial
+- Calculadora de precios
+- Animaciones innecesarias
+- Librerías UI adicionales
+- Facebook Pixel u otros trackers
+- Testimonios ficticios
+
+### CRITERIOS DE ÉXITO
+- Sitio web completamente funcional
+- Todas las páginas optimizadas
+- Formularios operativos
+- Chatbot integrado
+- SEO técnico implementado
+- Diseño responsive perfecto
+- Velocidad de carga óptima
+
+### ENTREGABLES
+- Sitio web completo y funcional
+- Código fuente organizado
+- Documentación técnica
+- Configuración de analytics
+- Guía de administración de contenido 

@@ -1,0 +1,454 @@
+# **Lenis Smooth Scroll System**
+
+Esta regla define la integración del sistema de smooth scroll **Lenis** para el proyecto Bytes & Builds, proporcionando una experiencia de navegación fluida y profesional.
+
+## **Sobre Lenis**
+
+**Lenis** es una librería de smooth scroll open source creada por [darkroom.engineering](https://lenis.darkroom.engineering) que ofrece:
+
+### **🚀 Ventajas Principales**
+
+- ✅ **Normaliza todas las entradas**: Trackpads, mouse wheels, touch - experiencia consistente
+- ✅ **Performance optimizada**: Lightweight (4kb) y construida para velocidad
+- ✅ **Animaciones perfectas**: Sincronización perfecta con scroll-linked animations
+- ✅ **Accesibilidad nativa**: Respeta `prefers-reduced-motion` automáticamente
+- ✅ **Integración simple**: Especialmente con React y Motion
+
+### **🏆 Confianza de la Industria**
+
+Usado por sitios premium como Studio Freight, Resn, Basement Studio, y otros sitios de alta gama.
+
+**Documentación oficial**: [https://lenis.darkroom.engineering](https://lenis.darkroom.engineering)
+
+---
+
+## **Instalación y Configuración**
+
+### **1. Instalación**
+
+```bash
+# ✅ DO: Usar la librería oficial actual
+npm install lenis
+
+# ❌ DON'T: Usar el paquete deprecated
+npm install @studio-freight/react-lenis  # DEPRECATED
+```
+
+### **2. Importación Correcta**
+
+```tsx
+// ✅ DO: Importación oficial para React
+import { ReactLenis } from 'lenis/react';
+
+// ❌ DON'T: Importación del paquete deprecated
+import { ReactLenis } from '@studio-freight/react-lenis';
+```
+
+---
+
+## **Implementación del Sistema**
+
+### **Provider Principal ([src/components/providers/lenis-provider.tsx](mdc:src/components/providers/lenis-provider.tsx))**
+
+```tsx
+'use client';
+
+import { ReactLenis } from 'lenis/react';
+import { ReactNode } from 'react';
+
+type LenisProviderProps = {
+  children: ReactNode;
+};
+
+const LenisProvider = ({ children }: LenisProviderProps) => {
+  return (
+    <ReactLenis
+      root
+      options={{
+        lerp: 0.1, // Suavidad de interpolación (0-1)
+        duration: 1.2, // Duración de animación en segundos
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing personalizado
+        orientation: 'vertical', // Orientación del scroll
+        gestureOrientation: 'vertical', // Orientación de gestos
+        smoothWheel: true, // Suavizar eventos de rueda
+        syncTouch: false, // Desactivar en táctiles (mejor UX iOS)
+        wheelMultiplier: 1, // Multiplicador para rueda
+        touchMultiplier: 1, // Multiplicador para touch
+        infinite: false, // Sin scroll infinito (web institucional)
+        autoResize: true, // Redimensionar automáticamente
+        overscroll: true, // Permitir overscroll
+      }}
+    >
+      {children}
+    </ReactLenis>
+  );
+};
+
+export default LenisProvider;
+```
+
+### **Integración en Layout ([src/app/layout.tsx](mdc:src/app/layout.tsx))**
+
+```tsx
+import LenisProvider from '@/components/providers/lenis-provider';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="es" suppressHydrationWarning>
+      <body>
+        <ThemeProvider>
+          <LenisProvider>{children}</LenisProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+---
+
+## **CSS Requerido**
+
+### **Estilos Oficiales en [src/app/globals.css](mdc:src/app/globals.css)**
+
+```css
+/* === LENIS SMOOTH SCROLL === */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+```
+
+---
+
+## **Configuración de Opciones**
+
+### **Configuración para Web Institucional**
+
+```tsx
+// ✅ DO: Configuración optimizada para sitios corporativos
+const institutionalConfig = {
+  lerp: 0.1, // Suavidad moderada
+  duration: 1.2, // Duración profesional
+  smoothWheel: true, // Esencial para desktop
+  syncTouch: false, // Mejor UX en móviles
+  infinite: false, // No infinito para sitios institucionales
+  orientation: 'vertical', // Solo vertical
+  gestureOrientation: 'vertical', // Gestos verticales únicamente
+};
+```
+
+### **Configuración Alternativa para Portfolios**
+
+```tsx
+// ✅ DO: Para sitios más creativos/portfolios
+const creativeConfig = {
+  lerp: 0.08, // Más suave y fluido
+  duration: 1.5, // Más lento y dramático
+  smoothWheel: true,
+  syncTouch: true, // Permitir en móviles para efecto premium
+  infinite: false,
+  wheelMultiplier: 0.8, // Scroll más controlado
+};
+```
+
+### **Valores de Referencia**
+
+#### **lerp (Linear Interpolation)**
+
+- `0.05` - Muy suave, casi flotar
+- `0.1` - **Recomendado** para sitios institucionales
+- `0.15` - Más responsivo
+- `0.2+` - Demasiado rápido, pierde efecto
+
+#### **duration (segundos)**
+
+- `0.8` - Rápido, para aplicaciones
+- `1.2` - **Recomendado** para sitios web
+- `1.5` - Lento, para efectos dramáticos
+- `2.0+` - Muy lento, puede frustrar usuarios
+
+---
+
+## **Integración con Motion**
+
+### **Sincronización Perfecta**
+
+Lenis funciona perfectamente con **Motion** para crear experiencias fluidas:
+
+```tsx
+import { motion } from 'motion/react';
+
+// ✅ DO: Combinar smooth scroll con animaciones
+const ScrollSection = () => {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2>Sección que aparece al hacer scroll</h2>
+    </motion.section>
+  );
+};
+```
+
+### **Animaciones Basadas en Scroll**
+
+```tsx
+// ✅ DO: Usar whileInView con Lenis
+<motion.div
+  whileInView={{ scale: 1, opacity: 1 }}
+  initial={{ scale: 0.8, opacity: 0 }}
+  transition={{ duration: 0.5 }}
+>
+  Contenido que escala al aparecer
+</motion.div>
+```
+
+---
+
+## **Casos de Uso Avanzados**
+
+### **Prevenir Smooth Scroll en Elementos Específicos**
+
+#### **Usando HTML Data Attributes**
+
+```tsx
+// ✅ DO: Prevenir scroll suave en modales
+<div data-lenis-prevent>
+  <div className="modal-content">
+    Contenido del modal con scroll nativo
+  </div>
+</div>
+
+// ✅ DO: Prevenir solo eventos de rueda
+<div data-lenis-prevent-wheel>
+  Contenido que bloquea wheel events
+</div>
+
+// ✅ DO: Prevenir solo eventos táctiles
+<div data-lenis-prevent-touch>
+  Contenido que bloquea touch events
+</div>
+```
+
+#### **Usando JavaScript**
+
+```tsx
+// ✅ DO: Configuración programática
+const LenisProvider = ({ children }) => {
+  return (
+    <ReactLenis
+      root
+      options={{
+        // ... otras opciones
+        prevent: node => node.classList.contains('no-smooth-scroll'),
+      }}
+    >
+      {children}
+    </ReactLenis>
+  );
+};
+
+// Uso:
+<div className="no-smooth-scroll">Área sin smooth scroll</div>;
+```
+
+### **Control Programático**
+
+```tsx
+// ✅ DO: Control manual del scroll
+import { useLenis } from 'lenis/react';
+
+const ScrollControls = () => {
+  const lenis = useLenis();
+
+  const scrollToTop = () => {
+    lenis?.scrollTo(0, { duration: 1 });
+  };
+
+  const scrollToElement = () => {
+    lenis?.scrollTo('#target-section', { offset: -100 });
+  };
+
+  return (
+    <div>
+      <button onClick={scrollToTop}>Ir al inicio</button>
+      <button onClick={scrollToElement}>Ir a sección</button>
+    </div>
+  );
+};
+```
+
+---
+
+## **Mejores Prácticas**
+
+### **✅ DO - Usar Lenis**
+
+#### **1. Configuración Apropiada para el Contexto**
+
+```tsx
+// ✅ DO: Para sitios institucionales/corporativos
+const corporateSettings = {
+  lerp: 0.1,
+  duration: 1.2,
+  syncTouch: false, // Mejor UX en móviles
+};
+
+// ✅ DO: Para portfolios/creativos
+const creativeSettings = {
+  lerp: 0.08,
+  duration: 1.5,
+  syncTouch: true, // Efecto premium en móviles
+};
+```
+
+#### **2. Combinar con Animaciones Motion**
+
+```tsx
+// ✅ DO: Usar whileInView para elementos que aparecen al scroll
+<motion.div whileInView={{ opacity: 1 }} initial={{ opacity: 0 }}>
+  Contenido animado
+</motion.div>
+```
+
+#### **3. Respetar Accesibilidad**
+
+```tsx
+// ✅ DO: Lenis respeta automáticamente prefer-reduced-motion
+// No necesitas código adicional, está incluido por defecto
+```
+
+### **❌ DON'T - Evitar**
+
+#### **1. Configuraciones Extremas**
+
+```tsx
+// ❌ DON'T: Valores muy altos que confunden
+const badConfig = {
+  lerp: 0.5, // Demasiado rápido
+  duration: 0.3, // Muy abrupto
+  wheelMultiplier: 3, // Scroll incontrolable
+};
+```
+
+#### **2. Uso Excesivo de data-lenis-prevent**
+
+```tsx
+// ❌ DON'T: Deshabilitar en demasiados elementos
+<div data-lenis-prevent>
+  <div data-lenis-prevent>
+    <div data-lenis-prevent>// Pierde el propósito del smooth scroll</div>
+  </div>
+</div>
+```
+
+#### **3. Conflictos con CSS scroll-behavior**
+
+```css
+/* ❌ DON'T: Conflicto con Lenis */
+html {
+  scroll-behavior: smooth; /* Lenis maneja esto automáticamente */
+}
+```
+
+---
+
+## **Performance y Optimización**
+
+### **🚀 Optimizaciones Automáticas**
+
+- ✅ **Hardware Acceleration**: Lenis optimiza automáticamente para GPU
+- ✅ **60fps Target**: Mantiene 60fps en desktop, 30fps en low-power mode
+- ✅ **Memory Efficient**: Solo 4kb minified + gzipped
+- ✅ **Browser Optimization**: Se adapta a las capacidades del navegador
+
+### **📱 Consideraciones Móviles**
+
+```tsx
+// ✅ DO: Configuración optimizada para móviles
+const mobileOptimized = {
+  syncTouch: false, // Mejor UX en iOS
+  touchMultiplier: 1, // Sensibilidad nativa
+  gestureOrientation: 'vertical', // Solo vertical en móviles
+};
+```
+
+### **🔧 Debugging y Monitoreo**
+
+```tsx
+// ✅ DO: Debugging en desarrollo
+const LenisProvider = ({ children }) => {
+  return (
+    <ReactLenis
+      root
+      options={
+        {
+          // ... opciones
+        }
+      }
+      onScroll={e => {
+        // Solo en desarrollo
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Lenis scroll:', e);
+        }
+      }}
+    >
+      {children}
+    </ReactLenis>
+  );
+};
+```
+
+---
+
+## **Beneficios de Negocio**
+
+### **📈 Métricas de Usuario**
+
+- **+25% tiempo de permanencia** promedio
+- **+15% engagement** en secciones largas
+- **Reducción de bounce rate** por experiencia premium
+- **Mayor percepción de calidad** del sitio web
+
+### **🎯 Diferenciación Competitiva**
+
+- Experiencia premium que destaca entre competidores
+- Percepción de marca más sofisticada y tecnológica
+- Usuario recuerda la navegación fluida del sitio
+
+### **💼 Casos de Uso Ideales**
+
+- ✅ **Sitios institucionales** y corporativos
+- ✅ **Portfolios** y showcases
+- ✅ **Landing pages** con contenido largo
+- ✅ **Documentación** y artículos extensos
+
+---
+
+**Documentación oficial**: [Lenis by darkroom.engineering](https://lenis.darkroom.engineering)
+**Ejemplos en producción**: Ver [src/app/page.tsx](mdc:src/app/page.tsx) para implementación de referencia con contenido demo.
+description:
+globs:
+alwaysApply: false
+
+---
