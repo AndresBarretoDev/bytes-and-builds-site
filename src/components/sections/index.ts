@@ -1,0 +1,5 @@
+export { HeroSection } from './hero-section'
+export { ClientLogosSection } from './client-logos-section'
+export { ServicesSection } from './services-section'
+export { ValuePropositionSection } from './value-proposition-section'
+export { ProcessSection } from './process-section' 
