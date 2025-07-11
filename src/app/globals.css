@@ -5,10 +5,10 @@
 @layer base {
   :root {
     /* Bytes & Builds Corporate Colors (Light Mode) */
-    --brand-primary: 225 45% 36%;
-    /* #34518d */
-    --brand-secondary: 225 45% 21%;
+    --brand-primary: 225 45% 21%;
     /* #1f2a44 */
+    --brand-secondary: 225 45% 36%;
+    /* #34518d */
     --brand-accent: 178 100% 39%;
     /* #00c7b7 */
     --brand-blue: 215 70% 53%;
@@ -46,10 +46,10 @@
 
   .dark {
     /* Bytes & Builds Corporate Colors (Dark Mode) */
-    --brand-primary: 225 45% 45%;
-    /* Lighter version for dark mode */
-    --brand-secondary: 225 45% 30%;
-    /* Lighter version for dark mode */
+    --brand-primary: 225 45% 30%;
+    /* Darker primary for dark mode (#1f2a44 base) */
+    --brand-secondary: 225 45% 45%;
+    /* Lighter secondary for dark mode (#34518d base) */
     --brand-accent: 178 100% 50%;
     /* Brighter accent for dark mode */
     --brand-blue: 215 70% 65%;
@@ -257,13 +257,10 @@ html {
   }
 
   .border-brand-gradient {
-    border-image: linear-gradient(
-        to right,
+    border-image: linear-gradient(to right,
         hsl(var(--brand-primary)),
         hsl(var(--brand-blue)),
-        hsl(var(--brand-accent))
-      )
-      1;
+        hsl(var(--brand-accent))) 1;
   }
 }
 
@@ -287,4 +284,71 @@ html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+/* Custom Animations for Modern Design */
+@keyframes gradient {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 30s linear infinite;
+}
+
+.pause-animation {
+  animation-play-state: paused;
+}
+
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}
+
+/* Infinite scroll hover effects */
+.hover\:grayscale-0:hover {
+  filter: grayscale(0);
+}
+
+/* Enhanced text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-accent)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

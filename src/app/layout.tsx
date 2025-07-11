@@ -3,6 +3,8 @@ import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import LenisProvider from '@/components/providers/lenis-provider';
+import { StagewiseToolbar } from '@stagewise/toolbar-next';
+import { ReactPlugin } from '@stagewise-plugins/react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -132,7 +134,7 @@ export default function RootLayout({
         <link rel="manifest" href="/favicons.ico/manifest.json" />
         <meta
           name="msapplication-config"
-          href="/favicons.ico/browserconfig.xml"
+          content="/favicons.ico/browserconfig.xml"
         />
       </head>
       <body
@@ -144,6 +146,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <StagewiseToolbar
+            config={{
+              plugins: [ReactPlugin],
+            }}
+          />
           <LenisProvider>{children}</LenisProvider>
         </ThemeProvider>
       </body>
