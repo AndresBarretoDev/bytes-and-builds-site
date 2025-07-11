@@ -187,7 +187,7 @@ export const ValuePropositionSection = () => {
                                     <div className="space-y-6">
                                         <h3 className="text-3xl md:text-4xl text-foreground leading-tight">
                                             Más que desarrollo,{' '}
-                                            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+                                            <span style={{ background: 'linear-gradient(to right, #00c7b7, #1f2a44)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                                                 somos tu socio tecnológico
                                             </span>
                                         </h3>
@@ -267,7 +267,7 @@ export const ValuePropositionSection = () => {
                                         }}
                                         className="absolute -top-4 -right-4"
                                     >
-                                        <div className="bg-gradient-to-r from-brand-accent to-brand-primary text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                        <div style={{ backgroundColor: '#00c7b7' }} className="text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-shadow duration-300">
                                             <Sparkles className="w-4 h-4 inline mr-1" />
                                             Garantizado
                                         </div>
@@ -278,34 +278,6 @@ export const ValuePropositionSection = () => {
                     </ParallaxScale>
                 </ScrollReveal>
 
-                {/* Enhanced CTA */}
-                <ScrollReveal direction="up" delay={0.6}>
-                    <div className="text-center mt-20">
-                        <div className="relative max-w-2xl mx-auto">
-                            <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/10 via-brand-accent/10 to-brand-primary/10 rounded-3xl blur-2xl" />
-
-                            <div className="relative bg-gradient-to-br from-card/90 to-card/95 backdrop-blur-sm border border-brand-primary/20 rounded-3xl p-8 md:p-10">
-                                <Rocket className="w-12 h-12 text-brand-accent mx-auto mb-4" />
-
-                                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">
-                                    ¿Listo para transformar tu negocio?
-                                </h3>
-
-                                <p className="text-muted-foreground mb-6">
-                                    Conversa con nuestro equipo y descubre cómo podemos impulsar tu crecimiento
-                                </p>
-
-                                <Button size="lg" asChild className="group/cta">
-                                    <Link href="#contacto">
-                                        <Target className="w-5 h-5 mr-2" />
-                                        Iniciar transformación
-                                        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/cta:translate-x-1" />
-                                    </Link>
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                </ScrollReveal>
 
             </div>
         </section>

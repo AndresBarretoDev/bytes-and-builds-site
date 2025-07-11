@@ -18,7 +18,10 @@ import {
   HeroSection,
   ServicesSection,
   ValuePropositionSection,
-  ProcessSection
+  TimelineSolidSection,
+  ProjectsSection,
+  CTASection,
+  FooterSection
 } from '@/components/sections'
 
 export default function Home() {
@@ -27,7 +30,10 @@ export default function Home() {
       <HeroSection />
       <ServicesSection />
       <ValuePropositionSection />
-      <ProcessSection />
+      {/* <TimelineSolidSection /> */}
+      <ProjectsSection />
+      <CTASection />
+      <FooterSection />
     </>
   );
 }

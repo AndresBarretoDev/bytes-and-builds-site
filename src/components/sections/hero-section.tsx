@@ -121,7 +121,7 @@ export const HeroSection = () => {
                                         Desarrollo Web y <span className="text-gradient">Automatización</span> para PYMEs
                                     </h1>
                                     <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
-                                        Creamos sitios web profesionales y sistemas de automatización que profesionalizan las operaciones digitales de pequeñas y medianas empresas en crecimiento.
+                                        Sitios web que venden más y sistemas que ahorran tiempo. Especializados en hacer crecer PYMEs con tecnología simple y efectiva.
                                     </p>
                                 </AnimatedGroup>
 

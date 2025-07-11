@@ -9,10 +9,7 @@ import {
     Settings,
     ArrowRight,
     CheckCircle,
-    Code,
-    Smartphone,
-    Sparkles,
-    Star
+    Sparkles
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -21,13 +18,13 @@ import Link from 'next/link'
 const services = [
     {
         icon: Globe,
-        title: "Desarrollo web profesional",
-        description: "Sitios web modernos que convierten visitantes en clientes. Optimizados para velocidad, SEO y conversión.",
+        title: "Desarrollo web funcional",
+        description: "Diseñamos y desarrollamos páginas web funcionales, desde landings hasta sitios administrables. Adaptados a las necesidades reales de cada negocio.",
         features: [
-            "Diseño responsive y moderno",
-            "Optimización SEO avanzada",
-            "Integración con sistemas CRM",
-            "Análitica y seguimiento de conversiones"
+            "Sitios web desde cero adaptados a tu negocio",
+            "Landings de alta conversión optimizadas",
+            "Plataformas administrables y escalables",
+            "Integración con sistemas existentes"
         ],
         highlighted: true,
         buttonText: "Ver proyectos",
@@ -36,13 +33,13 @@ const services = [
     },
     {
         icon: Zap,
-        title: "Automatización de procesos",
-        description: "Sistemas que automatizan tareas repetitivas y optimizan las operaciones de tu PYME para mayor eficiencia.",
+        title: "Automatización de pedidos por WhatsApp",
+        description: "Implementamos flujos automatizados que permiten recibir, organizar y gestionar pedidos desde WhatsApp, con paneles de control y reportes.",
         features: [
-            "Automatización de facturación",
-            "Gestión automatizada de inventarios",
-            "Workflows de aprobaciones",
-            "Integración con herramientas existentes"
+            "Automatización completa de pedidos vía WhatsApp",
+            "Paneles de control para gestión centralizada",
+            "Reportes automáticos de ventas y seguimiento",
+            "Integración con sistemas de facturación"
         ],
         highlighted: false,
         buttonText: "Conocer más",
@@ -50,14 +47,14 @@ const services = [
         gradient: "from-brand-accent/3 to-brand-primary/3"
     },
     {
-        icon: Smartphone,
-        title: "Aplicaciones móviles",
-        description: "Apps nativas y web progresivas que extienden tu presencia digital y mejoran la experiencia del cliente.",
+        icon: Settings,
+        title: "Integraciones y sistemas a medida",
+        description: "Desarrollamos paneles personalizados e integramos herramientas como Google Sheets, APIs o pasarelas de pago. Todo en un solo flujo adaptado a tu operación.",
         features: [
-            "Desarrollo iOS y Android",
-            "Progressive Web Apps (PWA)",
-            "Sincronización con sistemas web",
-            "Notificaciones push inteligentes"
+            "Paneles personalizados para tu operación",
+            "Integración con Google Sheets y APIs",
+            "Pasarelas de pago y sistemas de facturación",
+            "Flujos automatizados end-to-end"
         ],
         highlighted: false,
         buttonText: "Ver demos",
