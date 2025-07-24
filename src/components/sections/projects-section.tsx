@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from '@/components/ui/scroll-reveal'
 import { ParallaxY, ParallaxCard } from '@/components/ui/parallax'
 import { ExternalLink, Github, ArrowRight, TrendingUp, Users, Zap } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const projects = [
@@ -104,9 +105,11 @@ export const ProjectsSection = () => {
 
                                         {/* Project Image */}
                                         <div className="relative overflow-hidden aspect-[16/10]">
-                                            <img
+                                            <Image
                                                 src={project.image}
                                                 alt={project.title}
+                                                width={800} 
+                                                height={500}
                                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
 
 /**
@@ -93,12 +94,12 @@ export const ClientLogosSection = () => {
                         <div className="flex items-center space-x-16 px-8">
                             {clientLogos.map((client, index) => (
                                 <div key={`first-${index}`} className="flex-shrink-0">
-                                    <img
+                                    <Image
                                         className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
                                         src={client.src}
                                         alt={client.name}
-                                        height={client.height}
-                                        width="auto"
+                                        height={parseInt(client.height)}
+                                        width={parseInt(client.height) * 3} // Assuming a 3:1 aspect ratio
                                         style={{ height: `${client.height}px`, width: 'auto' }}
                                     />
                                 </div>
@@ -109,12 +110,12 @@ export const ClientLogosSection = () => {
                         <div className="flex items-center space-x-16 px-8">
                             {clientLogos.map((client, index) => (
                                 <div key={`second-${index}`} className="flex-shrink-0">
-                                    <img
+                                    <Image
                                         className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
                                         src={client.src}
                                         alt={client.name}
-                                        height={client.height}
-                                        width="auto"
+                                        height={parseInt(client.height)}
+                                        width={parseInt(client.height) * 3} // Assuming a 3:1 aspect ratio
                                         style={{ height: `${client.height}px`, width: 'auto' }}
                                     />
                                 </div>

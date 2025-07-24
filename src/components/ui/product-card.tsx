@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion, MotionValue } from "motion/react";
 
 export interface ProductCardProps {
@@ -28,10 +29,10 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
             key={product.title}
             className="group/product h-96 w-[30rem] relative shrink-0"
         >
-            <img
+            <Image
                 src={product.thumbnail}
-                height="600"
-                width="600"
+                height={600}
+                width={600}
                 className="object-cover object-left-top absolute h-full w-full inset-0"
                 alt={product.title}
             />

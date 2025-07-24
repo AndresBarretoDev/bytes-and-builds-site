@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedGroup } from '@/components/ui/animated-group'
@@ -86,12 +87,12 @@ export const HeroSection = () => {
                             }}
                             className="absolute inset-0 -z-20">
                             <ParallaxBackground speed={0.4} className="absolute inset-x-0 top-56 -z-20 hidden lg:top-32 dark:block">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                     alt="background"
                                     className="w-full h-full object-cover opacity-20"
-                                    width="2072"
-                                    height="1380"
+                                    width={2072}
+                                    height={1380}
                                 />
                             </ParallaxBackground>
                         </AnimatedGroup>
@@ -177,22 +178,22 @@ export const HeroSection = () => {
                                 <ParallaxScale speed={0.15} className="relative mx-auto max-w-6xl">
                                     <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                                         <ParallaxY speed={0.2}>
-                                            <img
+                                            <Image
                                                 className="bg-background aspect-[16/9] relative hidden rounded-2xl dark:block"
                                                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                                 alt="Dashboard de automatización empresarial"
-                                                width="2015"
-                                                height="1134"
+                                                width={2015}
+                                                height={1134}
                                             />
                                         </ParallaxY>
                                         <ParallaxY speed={0.25}>
-                                            <img
-                                                className="z-2 border-border/25 aspect-[16/9] relative rounded-2xl border dark:hidden"
-                                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                                alt="Dashboard de automatización empresarial"
-                                                width="2070"
-                                                height="1164"
-                                            />
+                                            <Image
+                                            className="z-2 border-border/25 aspect-[16/9] relative rounded-2xl border dark:hidden"
+                                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                            alt="Dashboard de automatización empresarial"
+                                            width={2070}
+                                            height={1164}
+                                        />
                                         </ParallaxY>
                                     </div>
                                 </ParallaxScale>
