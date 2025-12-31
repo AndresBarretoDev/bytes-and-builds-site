@@ -22,6 +22,8 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
+import { ParallaxY, ParallaxMulti, ParallaxScale } from '@/components/ui/parallax'
+import { ScrollReveal } from '@/components/ui/scroll-reveal'
 import { Mail, Calendar as CalendarIcon, Copy } from "lucide-react"
 import { useState } from "react"
 
@@ -75,12 +77,38 @@ export function ContactFormSection() {
 
     return (
         <section id="contacto" className="relative py-24 md:py-32 bg-gradient-to-br from-background via-brand-primary/5 to-background overflow-hidden scroll-mt-24">
-            <div className="container mx-auto px-4 max-w-6xl">
-                <div className="mb-12 text-center">
+            {/* Subtle Background Effects with Parallax */}
+            <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-background via-muted/10 to-background" />
+
+                <ParallaxY speed={0.2} className="absolute top-1/4 left-1/4">
+                    <div className="w-96 h-96 bg-gradient-to-r from-brand-primary/6 to-brand-accent/6 rounded-full blur-3xl" />
+                </ParallaxY>
+
+                <ParallaxMulti
+                    effects={{
+                        y: { speed: 0.3, direction: 'down' },
+                        x: { speed: 0.1, direction: 'up' }
+                    }}
+                    className="absolute bottom-1/4 right-1/4"
+                >
+                    <div className="w-96 h-96 bg-gradient-to-r from-brand-accent/6 to-brand-primary/6 rounded-full blur-3xl" />
+                </ParallaxMulti>
+
+                <ParallaxScale speed={0.05} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="w-[600px] h-[200px] bg-brand-primary/3 rounded-full blur-3xl" />
+                </ParallaxScale>
+            </div>
+
+            <div className="container mx-auto px-4 max-w-6xl relative z-10">
+                <ScrollReveal direction="up" delay={0.2}>
+                    <div className="mb-12 text-center">
                     <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">¿Listo para transformar tu negocio?</h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Completa el formulario o elige tu método preferido de contacto. Te responderemos en menos de 24h.</p>
-                </div>
-                <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-stretch">
+                    </div>
+                </ScrollReveal>
+                <ScrollReveal direction="up" delay={0.3}>
+                    <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-stretch">
                     {/* Lateral izquierdo */}
                     <div className="md:w-1/3 flex flex-col gap-8 justify-center items-center md:items-start">
                         {/* Correo */}
@@ -239,19 +267,22 @@ export function ContactFormSection() {
                                         </FormItem>
                                     )}
                                 />
-                                <Button
-                                    type="submit"
-                                    className="w-full bg-brand-accent text-white hover:bg-brand-primary transition-all"
-                                    disabled={form.formState.isSubmitting}
-                                >
-                                    {form.formState.isSubmitting ? "Enviando..." : "Enviar mensaje"}
-                                </Button>
+                                <div className="flex justify-center">
+                                    <Button
+                                        type="submit"
+                                        className="bg-brand-accent text-white hover:bg-brand-primary transition-all"
+                                        disabled={form.formState.isSubmitting}
+                                    >
+                                        {form.formState.isSubmitting ? "Enviando..." : "Enviar mensaje"}
+                                    </Button>
+                                </div>
                                 {success && <div className="text-green-600 text-center mt-2">¡Gracias! Tu mensaje fue enviado correctamente.</div>}
                                 {error && <div className="text-red-600 text-center mt-2">{error}</div>}
                             </form>
                         </Form>
                     </div>
-                </div>
+                    </div>
+                </ScrollReveal>
             </div>
         </section>
     )

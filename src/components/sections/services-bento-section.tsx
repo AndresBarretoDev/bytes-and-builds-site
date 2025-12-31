@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { ParallaxY, ParallaxMulti, ParallaxScale } from '@/components/ui/parallax';
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 import {
     Code,
     Settings,
@@ -14,10 +16,34 @@ import {
 export const ServicesBentoSection = () => {
     return (
         <section id="servicios" className="relative py-16 md:py-20 overflow-hidden scroll-mt-24">
-            <div className="container mx-auto px-6 max-w-7xl">
+            {/* Subtle Background Effects with Parallax */}
+            <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-background via-muted/10 to-background" />
+
+                <ParallaxY speed={0.2} className="absolute top-1/4 left-1/4">
+                    <div className="w-96 h-96 bg-gradient-to-r from-brand-primary/6 to-brand-accent/6 rounded-full blur-3xl" />
+                </ParallaxY>
+
+                <ParallaxMulti
+                    effects={{
+                        y: { speed: 0.3, direction: 'down' },
+                        x: { speed: 0.1, direction: 'up' }
+                    }}
+                    className="absolute bottom-1/4 right-1/4"
+                >
+                    <div className="w-96 h-96 bg-gradient-to-r from-brand-accent/6 to-brand-primary/6 rounded-full blur-3xl" />
+                </ParallaxMulti>
+
+                <ParallaxScale speed={0.05} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="w-[600px] h-[200px] bg-brand-primary/3 rounded-full blur-3xl" />
+                </ParallaxScale>
+            </div>
+
+            <div className="container mx-auto px-6 max-w-7xl relative z-10">
 
                 {/* Header */}
-                <div className="text-center mb-16">
+                <ScrollReveal direction="up" delay={0.2}>
+                    <div className="text-center mb-16">
                     <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-accent/10 to-brand-primary/10 text-brand-accent text-sm font-medium mb-6 border border-brand-accent/20">
                         <Zap className="w-4 h-4" />
                         Nuestros Servicios
@@ -34,10 +60,12 @@ export const ServicesBentoSection = () => {
                         Combinamos desarrollo web profesional con automatización inteligente
                         para crear soluciones digitales que realmente funcionen para tu negocio.
                     </p>
-                </div>
+                    </div>
+                </ScrollReveal>
 
                 {/* Bento Grid */}
-                <BentoGrid className="max-w-6xl mx-auto">
+                <ScrollReveal direction="up" delay={0.3}>
+                    <BentoGrid className="max-w-6xl mx-auto">
                     {items.map((item, i) => (
                         <BentoGridItem
                             key={i}
@@ -55,7 +83,8 @@ export const ServicesBentoSection = () => {
                             )}
                         />
                     ))}
-                </BentoGrid>
+                    </BentoGrid>
+                </ScrollReveal>
             </div>
         </section>
     );
