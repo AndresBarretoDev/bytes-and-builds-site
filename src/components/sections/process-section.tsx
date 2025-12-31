@@ -72,7 +72,7 @@ const steps = [
 
 export const ProcessSection = () => {
     return (
-        <section className="relative py-16 md:py-40 overflow-hidden">
+        <section id="sobre-nosotros" className="relative py-16 md:py-40 overflow-hidden scroll-mt-24">
             {/* Subtle Background with Parallax */}
             <div aria-hidden className="absolute inset-0 -z-10">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-background via-muted/10 to-background" />

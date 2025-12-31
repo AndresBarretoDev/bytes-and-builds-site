@@ -74,7 +74,7 @@ export function ContactFormSection() {
     }
 
     return (
-        <section className="relative py-24 md:py-32 bg-gradient-to-br from-background via-brand-primary/5 to-background overflow-hidden">
+        <section id="contacto" className="relative py-24 md:py-32 bg-gradient-to-br from-background via-brand-primary/5 to-background overflow-hidden scroll-mt-24">
             <div className="container mx-auto px-4 max-w-6xl">
                 <div className="mb-12 text-center">
                     <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">¿Listo para transformar tu negocio?</h2>

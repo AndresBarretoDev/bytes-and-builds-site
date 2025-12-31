@@ -28,11 +28,11 @@ const buttonVariants = cva(
                     "bg-brand-blue text-brand-white hover:bg-brand-blue/90 shadow-lg shadow-brand-blue/25 hover:shadow-xl hover:shadow-brand-blue/30 hover:-translate-y-0.5",
             },
             size: {
-                sm: "h-9 px-4 text-sm rounded-[8px]",
-                default: "h-11 px-6 text-sm",
-                lg: "h-12 px-8 text-base rounded-[12px]",
-                xl: "h-14 px-10 text-lg rounded-[14px]",
-                icon: "h-10 w-10",
+                sm: "h-11 px-4 text-sm rounded-[8px]", // 44px mínimo para touch targets (antes h-9 = 36px)
+                default: "h-11 px-6 text-sm", // 44px ✅
+                lg: "h-12 px-8 text-base rounded-[12px]", // 48px ✅
+                xl: "h-14 px-10 text-lg rounded-[14px]", // 56px ✅
+                icon: "h-11 w-11", // 44px mínimo para touch targets (antes h-10 = 40px)
             },
         },
         defaultVariants: {

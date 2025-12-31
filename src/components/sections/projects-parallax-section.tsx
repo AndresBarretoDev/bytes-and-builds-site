@@ -3,7 +3,11 @@
 import { HeroParallax } from '@/components/ui/hero-parallax'
 
 export function ProjectsParallaxSection() {
-    return <HeroParallax products={projects} />
+    return (
+        <section id="proyectos" className="relative scroll-mt-24">
+            <HeroParallax products={projects} />
+        </section>
+    )
 }
 
 export const projects = [

@@ -64,25 +64,28 @@ export const FooterSection = () => {
                         <div className="flex items-center gap-4">
                             <a
                                 href="https://github.com/bytesbuilds"
-                                className="flex items-center justify-center w-10 h-10 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
+                                className="flex items-center justify-center w-11 h-11 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="GitHub de Bytes & Builds"
                             >
                                 <Github className="w-4 h-4 text-muted-foreground group-hover:text-brand-accent transition-colors" />
                             </a>
                             <a
                                 href="https://linkedin.com/company/bytesbuilds"
-                                className="flex items-center justify-center w-10 h-10 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
+                                className="flex items-center justify-center w-11 h-11 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="LinkedIn de Bytes & Builds"
                             >
                                 <Linkedin className="w-4 h-4 text-muted-foreground group-hover:text-brand-accent transition-colors" />
                             </a>
                             <a
                                 href="https://twitter.com/bytesbuilds"
-                                className="flex items-center justify-center w-10 h-10 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
+                                className="flex items-center justify-center w-11 h-11 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="Twitter de Bytes & Builds"
                             >
                                 <Twitter className="w-4 h-4 text-muted-foreground group-hover:text-brand-accent transition-colors" />
                             </a>
@@ -91,8 +94,8 @@ export const FooterSection = () => {
 
                     {/* Services Links */}
                     <div className="space-y-6">
-                        <h4 className="text-lg font-semibold text-foreground">Servicios</h4>
-                        <nav className="space-y-3">
+                        <h3 className="text-lg font-semibold text-foreground">Servicios</h3>
+                        <nav aria-label="Enlaces de servicios" className="space-y-3">
                             {footerLinks.servicios.map((link, index) => (
                                 <Link
                                     key={index}
@@ -107,8 +110,8 @@ export const FooterSection = () => {
 
                     {/* Resources Links */}
                     <div className="space-y-6">
-                        <h4 className="text-lg font-semibold text-foreground">Recursos</h4>
-                        <nav className="space-y-3">
+                        <h3 className="text-lg font-semibold text-foreground">Recursos</h3>
+                        <nav aria-label="Enlaces de recursos" className="space-y-3">
                             {footerLinks.recursos.map((link, index) => (
                                 <Link
                                     key={index}

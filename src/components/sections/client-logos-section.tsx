@@ -95,12 +95,12 @@ export const ClientLogosSection = () => {
                             {clientLogos.map((client, index) => (
                                 <div key={`first-${index}`} className="flex-shrink-0">
                                     <Image
-                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0 w-auto"
                                         src={client.src}
                                         alt={client.name}
                                         height={parseInt(client.height)}
                                         width={parseInt(client.height) * 3} // Assuming a 3:1 aspect ratio
-                                        style={{ height: `${client.height}px`, width: 'auto' }}
+                                        style={{ height: `${client.height}px`, width: `${parseInt(client.height) * 3}px` }}
                                     />
                                 </div>
                             ))}
@@ -111,7 +111,7 @@ export const ClientLogosSection = () => {
                             {clientLogos.map((client, index) => (
                                 <div key={`second-${index}`} className="flex-shrink-0">
                                     <Image
-                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0 w-auto"
                                         src={client.src}
                                         alt={client.name}
                                         height={parseInt(client.height)}
