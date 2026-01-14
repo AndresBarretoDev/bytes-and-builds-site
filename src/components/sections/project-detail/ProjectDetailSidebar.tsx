@@ -12,7 +12,7 @@ interface ProjectDetailSidebarProps {
 
 export const ProjectDetailSidebar = ({ client, services, technologies, timeline, liveUrl }: ProjectDetailSidebarProps) => {
     return (
-        <aside className="sticky top-28 flex flex-col gap-8">
+        <div className="flex flex-col gap-8">
             <div className="bg-brand-primary text-white p-6 md:p-8 rounded-2xl shadow-xl overflow-hidden relative group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/20 rounded-bl-full translate-x-8 -translate-y-8 transition-transform group-hover:translate-x-6 group-hover:-translate-y-6"></div>
 
@@ -68,7 +68,7 @@ export const ProjectDetailSidebar = ({ client, services, technologies, timeline,
                     )}
                 </div>
             </div>
-        </aside>
+        </div>
     );
 };
 

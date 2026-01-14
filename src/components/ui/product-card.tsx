@@ -67,12 +67,6 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
 
             {/* Contenido principal */}
             <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 text-white">
-                {/* Subtítulo */}
-                {product.subtitle && (
-                    <p className="text-brand-accent text-sm font-medium mb-2">
-                        {product.subtitle}
-                    </p>
-                )}
 
                 {/* Título */}
                 <h2 className="text-xl font-bold mb-2">
@@ -80,9 +74,9 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
                 </h2>
 
                 {/* Descripción */}
-                {product.description && (
+                {product.subtitle && (
                     <p className="text-gray-200 text-sm mb-3 line-clamp-2">
-                        {product.description}
+                        {product.subtitle}
                     </p>
                 )}
 

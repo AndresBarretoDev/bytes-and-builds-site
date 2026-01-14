@@ -11,6 +11,7 @@ import { ProjectDetailHero } from '@/components/sections/project-detail/ProjectD
 import { ProjectDetailImage } from '@/components/sections/project-detail/ProjectDetailImage';
 import { ProjectDetailOverview } from '@/components/sections/project-detail/ProjectDetailOverview';
 import { ProjectDetailChallenge } from '@/components/sections/project-detail/ProjectDetailChallenge';
+import { ProjectDetailGallery } from '@/components/sections/project-detail/ProjectDetailGallery';
 import { ProjectDetailSolution } from '@/components/sections/project-detail/ProjectDetailSolution';
 import { ProjectDetailStats } from '@/components/sections/project-detail/ProjectDetailStats';
 import { ProjectDetailSidebar } from '@/components/sections/project-detail/ProjectDetailSidebar';
@@ -52,7 +53,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     const nextProject = await WordPressService.getNextProject(project.id);
 
     return (
-        <div className="min-h-screen bg-background relative overflow-x-hidden">
+        <div className="min-h-screen bg-background relative">
             {/* Navegación Minimalista de Retorno */}
             <ProjectDetailNav />
 
@@ -85,12 +86,19 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                         <div className="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
 
                             {/* Columna Izquierda (Narrativa) */}
-                            <div className="lg:col-span-8 flex flex-col gap-16">
+                            <div className="lg:col-span-8 flex flex-col">
 
                                 <ProjectDetailOverview text={project.description} />
 
                                 {project.challenge && (
                                     <ProjectDetailChallenge challenge={project.challenge} />
+                                )}
+
+                                {project.gallery && (
+                                    <ProjectDetailGallery
+                                        images={project.gallery.images}
+                                        title={project.gallery.title}
+                                    />
                                 )}
 
                                 {project.solution && (
@@ -108,7 +116,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
                             {/* Columna Derecha (Sidebar Sticky) */}
                             <div className="lg:col-span-4 relative">
-                                <div className="flex flex-col gap-8 sticky top-28">
+                                <div className="flex flex-col gap-8 sticky top-28 self-start w-full">
                                     <ProjectDetailSidebar
                                         client={project.clientName}
                                         services={project.services}

@@ -7,7 +7,7 @@ interface ProjectDetailOverviewProps {
 
 export const ProjectDetailOverview = ({ text }: ProjectDetailOverviewProps) => {
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 pb-10">
             <h3 className="text-2xl font-bold text-brand-primary dark:text-white flex items-center gap-3 font-heading">
                 <FileText className="text-brand-accent w-6 h-6" />
                 Resumen del proyecto

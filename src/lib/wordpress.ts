@@ -24,6 +24,10 @@ export interface WPProject {
     services?: string[];
     timeline?: string;
     liveUrl?: string;
+    gallery?: {
+        title: string;
+        images: string[];
+    };
     challenge?: {
         title: string;
         items: string[];
@@ -87,7 +91,7 @@ export const WordPressService = {
 
         return {
             id: post.id,
-            title: post.title.rendered,
+            title: acf.custom_title || post.title.rendered,
             slug: post.slug,
             link: `/proyectos/${post.slug}`,
             thumbnail: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
@@ -102,6 +106,13 @@ export const WordPressService = {
             timeline: acf.timeline,
             liveUrl: acf.live_url,
             services: acf.services,
+            gallery: acf.gallery_group ? {
+                title: acf.gallery_group.gallery_title || "Showcase Visual",
+                images: acf.gallery_group.gallery_items?.map((item: any) => {
+                    if (typeof item === 'string') return item;
+                    return item.url || item.source_url || item;
+                }) || []
+            } : undefined,
             technologies: acf.technologies
                 ? (typeof acf.technologies === 'string' ? acf.technologies.split(',').map((t: string) => t.trim()) : acf.technologies)
                 : [],
