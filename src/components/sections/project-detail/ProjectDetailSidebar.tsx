@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Tag } from '@/components/ui/tag';
 
 interface ProjectDetailSidebarProps {
     client?: string;
@@ -24,18 +25,16 @@ export const ProjectDetailSidebar = ({ client, services, technologies, timeline,
                         </div>
                     )}
 
-                    {services && services.length > 0 && (
-                        <div className="flex flex-col gap-1 border-b border-white/10 pb-4">
-                            <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">Servicios</p>
-                            <div className="flex flex-wrap gap-2 mt-2">
-                                {services.map((service, index) => (
-                                    <span key={index} className="px-2 py-1 bg-white/10 rounded text-xs">
-                                        {service}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                           {services && services.length > 0 && (
+                               <div className="flex flex-col gap-1 border-b border-white/10 pb-4">
+                                   <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">Servicios</p>
+                                   <div className="flex flex-wrap gap-2 mt-3">
+                                       {services.map((service, index) => (
+                                           <Tag key={index}>{service}</Tag>
+                                       ))}
+                                   </div>
+                               </div>
+                           )}
 
                     {technologies && technologies.length > 0 && (
                         <div className="flex flex-col gap-1 border-b border-white/10 pb-4">

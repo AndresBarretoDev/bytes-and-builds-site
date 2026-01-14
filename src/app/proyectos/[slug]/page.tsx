@@ -1,9 +1,7 @@
 import { WordPressService } from '@/lib/wordpress';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
 import { FooterSection } from '@/components/sections';
-// import { HeroHeader } from '@/components/ui/hero-header'; // Eliminado para usar Nav minimalista
+import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 // Importación de componentes de detalle (Responsabilidad Única)
 import { ProjectDetailNav } from '@/components/sections/project-detail/ProjectDetailNav';
@@ -39,8 +37,6 @@ export async function generateStaticParams() {
 
 /**
  * ProjectDetailPage - Orquestador de la vista de detalle
- * 
- * Sigue el principio de composición: ensambla componentes especializados.
  */
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     const { slug } = await params;
@@ -86,30 +82,40 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                         <div className="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
 
                             {/* Columna Izquierda (Narrativa) */}
-                            <div className="lg:col-span-8 flex flex-col">
+                            <div className="lg:col-span-8 flex flex-col gap-12">
 
-                                <ProjectDetailOverview text={project.description} />
+                                <ScrollReveal direction="up" delay={0.1}>
+                                    <ProjectDetailOverview text={project.description} />
+                                </ScrollReveal>
 
                                 {project.challenge && (
-                                    <ProjectDetailChallenge challenge={project.challenge} />
+                                    <ScrollReveal direction="up" delay={0.2}>
+                                        <ProjectDetailChallenge challenge={project.challenge} />
+                                    </ScrollReveal>
                                 )}
 
                                 {project.gallery && (
-                                    <ProjectDetailGallery
-                                        images={project.gallery.images}
-                                        title={project.gallery.title}
-                                    />
+                                    <ScrollReveal direction="up" delay={0.3}>
+                                        <ProjectDetailGallery
+                                            images={project.gallery.images}
+                                            title={project.gallery.title}
+                                        />
+                                    </ScrollReveal>
                                 )}
 
                                 {project.solution && (
-                                    <ProjectDetailSolution
-                                        text={project.solution.description}
-                                        features={project.solution.features}
-                                    />
+                                    <ScrollReveal direction="up" delay={0.2}>
+                                        <ProjectDetailSolution
+                                            text={project.solution.description}
+                                            features={project.solution.features}
+                                        />
+                                    </ScrollReveal>
                                 )}
 
                                 {project.stats && (
-                                    <ProjectDetailStats stats={project.stats} />
+                                    <ScrollReveal direction="up" delay={0.2}>
+                                        <ProjectDetailStats stats={project.stats} />
+                                    </ScrollReveal>
                                 )}
 
                             </div>
@@ -117,21 +123,25 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                             {/* Columna Derecha (Sidebar Sticky) */}
                             <div className="lg:col-span-4 relative">
                                 <div className="flex flex-col gap-8 sticky top-28 self-start w-full">
-                                    <ProjectDetailSidebar
-                                        client={project.clientName}
-                                        services={project.services}
-                                        technologies={project.technologies}
-                                        timeline={project.timeline}
-                                        liveUrl={project.liveUrl}
-                                    />
+                                    <ScrollReveal direction="right" delay={0.4}>
+                                        <ProjectDetailSidebar
+                                            client={project.clientName}
+                                            services={project.services}
+                                            technologies={project.technologies}
+                                            timeline={project.timeline}
+                                            liveUrl={project.liveUrl}
+                                        />
+                                    </ScrollReveal>
 
                                     {project.testimonial && (
-                                        <ProjectDetailTestimonial
-                                            quote={project.testimonial.quote}
-                                            author={project.testimonial.author}
-                                            role={project.testimonial.role}
-                                            avatar={project.testimonial.avatar}
-                                        />
+                                        <ScrollReveal direction="right" delay={0.5}>
+                                            <ProjectDetailTestimonial
+                                                quote={project.testimonial.quote}
+                                                author={project.testimonial.author}
+                                                role={project.testimonial.role}
+                                                avatar={project.testimonial.avatar}
+                                            />
+                                        </ScrollReveal>
                                     )}
                                 </div>
                             </div>

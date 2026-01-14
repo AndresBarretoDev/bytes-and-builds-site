@@ -87,7 +87,6 @@ export const WordPressService = {
      */
     mapProject(post: any, mode: 'list' | 'detail'): WPProject {
         const acf = post.acf || {};
-        console.log("lo que llega en acf", acf);
 
         return {
             id: post.id,
@@ -108,34 +107,42 @@ export const WordPressService = {
             services: acf.services,
             gallery: acf.gallery_group ? {
                 title: acf.gallery_group.gallery_title || "Showcase Visual",
-                images: acf.gallery_group.gallery_items?.map((item: any) => {
-                    if (typeof item === 'string') return item;
-                    return item.url || item.source_url || item;
-                }) || []
+                images: Array.isArray(acf.gallery_group.gallery_items)
+                    ? acf.gallery_group.gallery_items.map((item: any) => {
+                        if (typeof item === 'string') return item;
+                        return item.url || item.source_url || item;
+                    })
+                    : []
             } : undefined,
             technologies: acf.technologies
-                ? (typeof acf.technologies === 'string' ? acf.technologies.split(',').map((t: string) => t.trim()) : acf.technologies)
+                ? (Array.isArray(acf.technologies) ? acf.technologies : (typeof acf.technologies === 'string' ? acf.technologies.split(',').map((t: string) => t.trim()) : []))
                 : [],
 
             // SECCIONES 2-5: Plan Maestro Final
             challenge: acf.challenge_group ? {
-                title: acf.challenge_group.challenge_title || "El Desafíos",
-                items: acf.challenge_group.challenge_item?.map((i: any) => i.item_text) || []
+                title: acf.challenge_group.challenge_title || "El Desafío",
+                items: Array.isArray(acf.challenge_group.challenge_items)
+                    ? acf.challenge_group.challenge_items.map((i: any) => i.item_text)
+                    : []
             } : undefined,
 
             solution: acf.solution_group ? {
                 title: "La Solución",
                 description: acf.solution_group.solution_text,
-                features: acf.solution_group.solution_features?.map((f: any) => ({
-                    title: f.feature_title,
-                    desc: f.feature_desc
-                })) || []
+                features: Array.isArray(acf.solution_group.solution_features)
+                    ? acf.solution_group.solution_features.map((f: any) => ({
+                        title: f.feature_title,
+                        desc: f.feature_desc
+                    }))
+                    : []
             } : undefined,
 
-            stats: acf.project_stats?.map((s: any) => ({
-                label: s.stat_label,
-                value: s.stat_value
-            })),
+            stats: Array.isArray(acf.project_stats)
+                ? acf.project_stats.map((s: any) => ({
+                    label: s.stat_label,
+                    value: s.stat_value
+                }))
+                : undefined,
 
             testimonial: acf.testimonial_group ? {
                 quote: acf.testimonial_group.client_quote,

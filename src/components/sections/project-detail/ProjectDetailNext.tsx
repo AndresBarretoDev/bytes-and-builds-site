@@ -13,9 +13,9 @@ export const ProjectDetailNext = ({ title, slug }: ProjectDetailNextProps) => {
             <div className="w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-between gap-8">
                 <div>
                     <p className="text-muted-foreground text-sm font-medium mb-1 uppercase tracking-widest">Siguiente Caso de Estudio</p>
-                    <h2 className="text-3xl font-bold text-brand-primary dark:text-white font-heading">{title}</h2>
+                    <h2 className="text-3xl font-bold text-brand-primary dark:text-white font-heading">{title.replace("|", "")}</h2>
                 </div>
-                <Link 
+                <Link
                     href={`/proyectos/${slug}`}
                     className="group flex items-center gap-4 text-brand-primary dark:text-white font-bold text-xl no-underline"
                 >
