@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, MotionValue } from "motion/react";
 
 export interface ProductCardProps {
     product: {
+        id: number;
         title: string;
         link: string;
         thumbnail: string;
@@ -26,7 +28,7 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
             whileHover={{
                 y: -20,
             }}
-            key={product.title}
+            key={product.id}
             className="group/product h-96 w-[30rem] relative shrink-0"
         >
             <Image
@@ -51,7 +53,7 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
 
             {/* Ícono CTA superior derecho */}
             {product.link && (
-                <a
+                <Link
                     href={product.link}
                     className="absolute top-4 right-4 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 z-10"
                 >
@@ -60,7 +62,7 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                     </div>
-                </a>
+                </Link>
             )}
 
             {/* Contenido principal */}

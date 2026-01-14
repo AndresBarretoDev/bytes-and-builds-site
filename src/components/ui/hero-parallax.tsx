@@ -90,7 +90,7 @@ export const HeroParallax = ({
                                 <ProductCard
                                     product={product}
                                     translate={index % 2 === 0 ? translateX : translateXReverse}
-                                    key={product.title}
+                                    key={product.id}
                                 />
                             ))}
                         </motion.div>
