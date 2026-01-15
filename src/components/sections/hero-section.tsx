@@ -58,7 +58,7 @@ export const HeroSection = () => {
                         <div className="h-[80rem] -translate-y-[350px] w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(58,119,211,0.04)_0,rgba(58,119,211,0.02)_80%,transparent_100%)]" />
                     </ParallaxScale>
                 </div>
-                <section>
+                <section className="relative">
                     <div className="relative pt-24 md:pt-36">
                         <AnimatedGroup
                             variants={{

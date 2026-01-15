@@ -10,6 +10,7 @@ interface ScrollRevealProps {
     duration?: number
     distance?: number
     className?: string
+    style?: React.CSSProperties
 }
 
 export const ScrollReveal = ({
@@ -18,7 +19,8 @@ export const ScrollReveal = ({
     delay = 0,
     duration = 0.8,
     distance = 60,
-    className
+    className,
+    style
 }: ScrollRevealProps) => {
     const ref = useRef(null)
     const isInView = useInView(ref, {
@@ -55,6 +57,7 @@ export const ScrollReveal = ({
                 delay
             }}
             className={className}
+            style={style}
         >
             {children}
         </motion.div>

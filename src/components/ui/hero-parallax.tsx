@@ -20,11 +20,10 @@ export const HeroParallax = ({
     const productsPerRow = 5;
     const numberOfRows = Math.ceil(products.length / productsPerRow);
 
-    // Cálculo dinámico de altura escalable
-    // Base: 250vh para 3 filas, escala proporcionalmente con buffer extra
-    const baseHeight = 250; // vh para ~3 filas (más espacio para parallax)
+    // Cálculo dinámico equilibrado: ni tan largo como antes (333vh) ni tan corto como recién (240vh)
+    const baseHeight = 220; // vh base para el efecto (Punto medio entre 180 y 250)
     const baseRows = 3;
-    const heightInVh = Math.max(200, Math.min(400, baseHeight * (numberOfRows / baseRows)));
+    const heightInVh = Math.max(200, Math.min(350, baseHeight * (numberOfRows / baseRows)));
 
     const rows = [];
     for (let i = 0; i < numberOfRows; i++) {
@@ -97,7 +96,12 @@ export const HeroParallax = ({
                     ))}
                 </motion.div>
                 {/* CTA to See More */}
-                <ScrollReveal direction="up" delay={0.4} className="absolute bottom-0 left-0 right-0 mx-auto !-translate-y-[10vh]">
+                <ScrollReveal
+                    direction="up"
+                    delay={0.4}
+                    className="absolute left-0 right-0 mx-auto"
+                    style={{ bottom: `calc(${heightInVh}vh - 93%)` }}
+                >
                     <ProjectCTACard />
                 </ScrollReveal>
             </div>

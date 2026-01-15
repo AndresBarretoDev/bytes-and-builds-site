@@ -13,10 +13,10 @@ export default function Home() {
     <>
       {/* Secciones actuales del home-v2 */}
       <HeroSection />
+      <ProjectsParallaxSection />
       <ServicesBentoSection />
       <ValuePropositionHighlightSection />
       <ProcessSection />
-      <ProjectsParallaxSection />
       <ContactFormSection />
       <FooterSection />
 

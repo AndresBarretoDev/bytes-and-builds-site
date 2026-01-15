@@ -130,7 +130,7 @@ export const ClientLogosSection = () => {
                 {/* Call to action link */}
                 <div className="text-center mt-12">
                     <Link
-                        href="#casos-de-exito"
+                        href="#proyectos"
                         className="inline-flex items-center text-sm text-muted-foreground hover:text-brand-primary transition-colors duration-300 group">
                         <span>Conoce nuestros casos de éxito</span>
                         <ChevronRight className="ml-1 size-4 transition-transform group-hover:translate-x-1" />

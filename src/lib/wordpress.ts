@@ -93,7 +93,7 @@ export const WordPressService = {
             title: acf.custom_title || post.title.rendered,
             slug: post.slug,
             link: `/proyectos/${post.slug}`,
-            thumbnail: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+            thumbnail: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || `https://picsum.photos/800/600?random=${Math.random() * post.id}.webp`,
 
             // SECCIÓN 1: Slugs correctos confirmados por el usuario
             subtitle: acf.subtitle || 'Proyecto Destacado',
