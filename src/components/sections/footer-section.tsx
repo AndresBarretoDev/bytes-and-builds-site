@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react'
 import Link from 'next/link'
 
 const footerLinks = {
@@ -44,35 +44,35 @@ export const FooterSection = () => {
                         <div className="space-y-3">
                             <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                 <Mail className="w-4 h-4 text-brand-accent" />
-                                <a href="mailto:hola@bytesbuilds.com" className="hover:text-foreground transition-colors">
-                                    hola@bytesbuilds.com
+                                <a href="mailto:info@bytesandbuilds.com" className="hover:text-foreground transition-colors">
+                                    info@bytesandbuilds.com
                                 </a>
                             </div>
                             <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                 <Phone className="w-4 h-4 text-brand-accent" />
                                 <a href="tel:+5491123456789" className="hover:text-foreground transition-colors">
-                                    +54 9 11 2345-6789
+                                    +57 310 326 9651
                                 </a>
                             </div>
                             <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                 <MapPin className="w-4 h-4 text-brand-accent" />
-                                <span>Buenos Aires, Argentina</span>
+                                <span>Bogotá, Colombia</span>
                             </div>
                         </div>
 
                         {/* Social Links */}
                         <div className="flex items-center gap-4">
                             <a
-                                href="https://github.com/bytesbuilds"
+                                href="https://www.instagram.com/bytesandbuilds/"
                                 className="flex items-center justify-center w-11 h-11 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="GitHub de Bytes & Builds"
+                                aria-label="Instagram de Bytes & Builds"
                             >
-                                <Github className="w-4 h-4 text-muted-foreground group-hover:text-brand-accent transition-colors" />
+                                <Instagram className="w-4 h-4 text-muted-foreground group-hover:text-brand-accent transition-colors" />
                             </a>
                             <a
-                                href="https://linkedin.com/company/bytesbuilds"
+                                href="https://www.linkedin.com/company/bytes-and-builds/"
                                 className="flex items-center justify-center w-11 h-11 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -80,15 +80,7 @@ export const FooterSection = () => {
                             >
                                 <Linkedin className="w-4 h-4 text-muted-foreground group-hover:text-brand-accent transition-colors" />
                             </a>
-                            <a
-                                href="https://twitter.com/bytesbuilds"
-                                className="flex items-center justify-center w-11 h-11 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Twitter de Bytes & Builds"
-                            >
-                                <Twitter className="w-4 h-4 text-muted-foreground group-hover:text-brand-accent transition-colors" />
-                            </a>
+
                         </div>
                     </div>
 
