@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -26,15 +27,17 @@ import { ParallaxY, ParallaxMulti, ParallaxScale } from '@/components/ui/paralla
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
 import { Mail, Calendar as CalendarIcon, Copy } from "lucide-react"
 import { useState } from "react"
+import { cn } from "@/lib/utils"
+import { sendContactEmail } from "@/app/actions/contact"
 
 const schema = z.object({
-    name: z.string().min(2, "El nombre es requerido"),
+    name: z.string().min(3, "Por favor, ingresa tu nombre completo"),
     company: z.string().optional(),
-    email: z.string().email("Email inválido"),
-    phone: z.string().optional(),
-    service: z.string().min(2, "Selecciona un servicio"),
-    message: z.string().min(10, "El mensaje es requerido"),
-    privacy: z.boolean().refine(val => val, { message: "Debes aceptar la política de privacidad" })
+    email: z.string().email("Ingresa un correo electrónico válido"),
+    phone: z.string().min(10, "Ingresa un número de contacto válido").regex(/^\d{10}$/, "Ingresa un número de contacto válido"),
+    service: z.string().min(2, "Por favor, selecciona un servicio"),
+    message: z.string().min(50, "Cuéntanos un poco más sobre lo que necesitas (mín. 50 caracteres)").max(1000, "El mensaje puede ser mas conciso"),
+    privacy: z.boolean().refine(val => val, { message: "Es necesario aceptar la política de privacidad" })
 })
 
 type FormData = z.infer<typeof schema>
@@ -49,7 +52,7 @@ export function ContactFormSection() {
 
     const form = useForm<FormData>({
         resolver: zodResolver(schema),
-        mode: "onTouched",
+        mode: "onChange",
         defaultValues: {
             name: "",
             company: "",
@@ -64,15 +67,20 @@ export function ContactFormSection() {
     const onSubmit = async (data: FormData) => {
         setSuccess(false)
         setError("")
-        await new Promise(r => setTimeout(r, 1200))
-        setSuccess(true)
-        form.reset()
+        console.log(data)
+        const result = await sendContactEmail(data)
+        if (result.success) {
+            setSuccess(true)
+            form.reset()
+        } else {
+            setError(result.error)
+        }
     }
 
     const handleCopy = () => {
         navigator.clipboard.writeText(contactEmail)
         setCopied(true)
-        setTimeout(() => setCopied(false), 1500)
+        setTimeout(() => setCopied(false), 2000)
     }
 
     return (
@@ -103,8 +111,8 @@ export function ContactFormSection() {
             <div className="container mx-auto px-4 max-w-6xl relative z-10">
                 <ScrollReveal direction="up" delay={0.2}>
                     <div className="mb-12 text-center">
-                        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">¿Listo para transformar tu negocio?</h2>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Completa el formulario o elige tu método preferido de contacto. Te responderemos en menos de 24h.</p>
+                        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Hablemos de tu próximo proyecto</h2>
+                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Cuéntanos tus metas y te ayudaremos a alcanzarlas con tecnología simple y efectiva. Te responderemos en menos de 24 horas.</p>
                     </div>
                 </ScrollReveal>
                 <ScrollReveal direction="up" delay={0.3}>
@@ -112,35 +120,35 @@ export function ContactFormSection() {
                         {/* Lateral izquierdo */}
                         <div className="md:w-1/3 flex flex-col gap-8 justify-center items-center md:items-start">
                             {/* Correo */}
-                            <div className="w-full bg-white/80 dark:bg-card border border-brand-accent/20 rounded-2xl p-6 flex flex-col items-center md:items-start shadow-sm">
+                            <div className="w-full bg-white/80 dark:bg-card border border-brand-accent/20 rounded-2xl p-6 flex flex-col items-center md:items-start shadow-sm hover:border-brand-accent/40 transition-colors">
                                 <div className="flex items-center gap-2 mb-2 text-brand-accent font-semibold text-lg">
                                     <Mail className="w-5 h-5" />
                                     Correo directo
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="font-mono text-brand-primary text-base select-all">{contactEmail}</span>
-                                    <Button size="icon" variant="ghost" onClick={handleCopy} aria-label="Copiar correo">
+                                    <Button size="icon" variant="ghost" onClick={handleCopy} aria-label="Copiar correo" className="hover:bg-brand-accent/10">
                                         <Copy className="w-4 h-4" />
                                     </Button>
-                                    <Button size="icon" variant="ghost" asChild aria-label="Enviar correo">
+                                    <Button size="icon" variant="ghost" asChild aria-label="Enviar correo" className="hover:bg-brand-accent/10">
                                         <a href={`mailto:${contactEmail}`} target="_blank" rel="noopener noreferrer">
                                             <Mail className="w-4 h-4" />
                                         </a>
                                     </Button>
                                 </div>
-                                {copied && <span className="text-xs text-brand-accent mt-1">¡Copiado!</span>}
+                                {copied && <span className="text-xs font-medium text-brand-accent mt-2 animate-in fade-in slide-in-from-top-1">¡Copiado al portapapeles!</span>}
                             </div>
                             {/* Calendly */}
-                            <div className="w-full bg-white/80 dark:bg-card border border-brand-accent/20 rounded-2xl p-6 flex flex-col items-center md:items-start shadow-sm">
+                            <div className="w-full bg-white/80 dark:bg-card border border-brand-accent/20 rounded-2xl p-6 flex flex-col items-center md:items-start shadow-sm hover:border-brand-accent/40 transition-colors">
                                 <div className="flex items-center gap-2 mb-2 text-brand-accent font-semibold text-lg">
                                     <CalendarIcon className="w-5 h-5" />
-                                    Agenda una reunión
+                                    Reunión estratégica
                                 </div>
-                                <p className="text-sm text-muted-foreground mb-3">Reserva una llamada estratégica con nuestro equipo y recibe asesoría personalizada.</p>
-                                <Button asChild className="w-full bg-brand-accent text-white hover:bg-brand-primary transition-all">
+                                <p className="text-sm text-muted-foreground mb-4">Reserva una llamada de 30 minutos para analizar tu caso y recibir asesoría inicial sin costo.</p>
+                                <Button asChild className="w-full bg-brand-accent text-white hover:bg-brand-primary transition-all shadow-md hover:shadow-lg active:scale-[0.98]">
                                     <a href={calendlyUrl} target="_blank" rel="noopener noreferrer">
                                         <CalendarIcon className="w-4 h-4 mr-2" />
-                                        Agendar con Calendly
+                                        Agendar ahora
                                     </a>
                                 </Button>
                             </div>
@@ -155,11 +163,11 @@ export function ContactFormSection() {
                                             name="name"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Nombre *</FormLabel>
+                                                    <FormLabel className="text-foreground/90 font-medium">Nombre completo *</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="Tu nombre" {...field} />
+                                                        <Input placeholder="Tu nombre completo" {...field} className="focus:border-brand-accent/50 focus-visible:ring-0" />
                                                     </FormControl>
-                                                    <FormMessage />
+                                                    <FormMessage className="text-xs" />
                                                 </FormItem>
                                             )}
                                         />
@@ -168,11 +176,11 @@ export function ContactFormSection() {
                                             name="company"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Empresa</FormLabel>
+                                                    <FormLabel className="text-foreground/90 font-medium">Nombre de tu empresa (opcional)</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="Nombre de tu empresa" {...field} />
+                                                        <Input placeholder="Nombre de tu empresa" {...field} className=" focus:border-brand-accent/50 focus-visible:ring-0" />
                                                     </FormControl>
-                                                    <FormMessage />
+                                                    <FormMessage className="text-xs" />
                                                 </FormItem>
                                             )}
                                         />
@@ -181,11 +189,11 @@ export function ContactFormSection() {
                                             name="email"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Email *</FormLabel>
+                                                    <FormLabel className="text-foreground/90 font-medium">Correo electrónico *</FormLabel>
                                                     <FormControl>
-                                                        <Input type="email" placeholder="tu@email.com" {...field} />
+                                                        <Input type="email" placeholder="juan@empresa.com" {...field} className="focus:border-brand-accent/50 focus-visible:ring-0" />
                                                     </FormControl>
-                                                    <FormMessage />
+                                                    <FormMessage className="text-xs" />
                                                 </FormItem>
                                             )}
                                         />
@@ -194,11 +202,11 @@ export function ContactFormSection() {
                                             name="phone"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Teléfono</FormLabel>
+                                                    <FormLabel className="text-foreground/90 font-medium">Número de contacto</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="Tu teléfono" {...field} />
+                                                        <Input inputMode="numeric" placeholder="310 000 0000" {...field} className="focus:border-brand-accent/50 focus-visible:ring-0" />
                                                     </FormControl>
-                                                    <FormMessage />
+                                                    <FormMessage className="text-xs" />
                                                 </FormItem>
                                             )}
                                         />
@@ -208,21 +216,21 @@ export function ContactFormSection() {
                                                 name="service"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Servicio *</FormLabel>
+                                                        <FormLabel className="text-foreground/90 font-medium">¿En qué podemos ayudarte? *</FormLabel>
                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                             <FormControl>
-                                                                <SelectTrigger>
-                                                                    <SelectValue placeholder="Selecciona un servicio" />
+                                                                <SelectTrigger className="bg-background/50 border-border/60 focus:border-brand-accent/50">
+                                                                    <SelectValue placeholder="Selecciona el servicio de interés" />
                                                                 </SelectTrigger>
                                                             </FormControl>
                                                             <SelectContent>
-                                                                <SelectItem value="Desarrollo Web">Desarrollo Web</SelectItem>
-                                                                <SelectItem value="Automatización">Automatización Inteligente</SelectItem>
-                                                                <SelectItem value="Consultoría">Consultoría Digital</SelectItem>
-                                                                <SelectItem value="Otro">Otro</SelectItem>
+                                                                <SelectItem value="Desarrollo Web">Desarrollo de Sitio Web / App</SelectItem>
+                                                                <SelectItem value="Automatización">Automatización de Procesos</SelectItem>
+                                                                <SelectItem value="Consultoría">Consultoría Tecnológica</SelectItem>
+                                                                <SelectItem value="Otro">Otro requerimiento</SelectItem>
                                                             </SelectContent>
                                                         </Select>
-                                                        <FormMessage />
+                                                        <FormMessage className="text-xs" />
                                                     </FormItem>
                                                 )}
                                             />
@@ -232,16 +240,24 @@ export function ContactFormSection() {
                                                 control={form.control}
                                                 name="message"
                                                 render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel>Mensaje *</FormLabel>
+                                                    <FormItem className="relative">
+                                                        <FormLabel className="text-foreground/90 font-medium">Detalles del proyecto *</FormLabel>
                                                         <FormControl>
                                                             <Textarea
-                                                                placeholder="Cuéntanos sobre tu proyecto..."
-                                                                className="min-h-[100px]"
+                                                                placeholder="Cuéntanos brevemente qué buscas lograr..."
+                                                                className="min-h-[170px] focus:border-brand-accent/50 focus-visible:ring-0 resize-none"
                                                                 {...field}
                                                             />
                                                         </FormControl>
-                                                        <FormMessage />
+                                                        <FormMessage className="text-xs" />
+
+                                                        <span className={cn("text-xs text-muted-foreground absolute bottom-0 right-0 ", {
+                                                            "text-destructive": field.value.length < 50 || field.value.length > 1000,
+                                                            "text-muted-foreground": field.value.length <= 1000
+                                                        })} title="Caracteres restantes" aria-label="Caracteres restantes">
+                                                            {field.value.length} / 1000 caracteres
+                                                        </span>
+
                                                     </FormItem>
                                                 )}
                                             />
@@ -251,7 +267,7 @@ export function ContactFormSection() {
                                         control={form.control}
                                         name="privacy"
                                         render={({ field }) => (
-                                            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                            <FormItem className="flex flex-row items-start space-x-3 space-y-0 p-1">
                                                 <FormControl>
                                                     <Checkbox
                                                         checked={field.value}
@@ -259,25 +275,33 @@ export function ContactFormSection() {
                                                     />
                                                 </FormControl>
                                                 <div className="space-y-1 leading-none">
-                                                    <FormLabel>
-                                                        Acepto la política de privacidad
+                                                    <FormLabel className="text-sm font-normal text-muted-foreground">
+                                                        Acepto la <Link href="/privacidad" className="text-brand-accent hover:underline">política de privacidad</Link> y el tratamiento de mis datos.
                                                     </FormLabel>
-                                                    <FormMessage />
+                                                    <FormMessage className="text-[10px]" />
                                                 </div>
                                             </FormItem>
                                         )}
                                     />
-                                    <div className="flex justify-center">
+                                    <div className="flex justify-center pt-2">
                                         <Button
                                             type="submit"
-                                            className="bg-brand-accent text-white hover:bg-brand-primary transition-all"
+                                            className="bg-brand-accent text-white hover:bg-brand-primary transition-all px-12 h-12 text-base font-semibold shadow-lg shadow-brand-accent/10"
                                             disabled={form.formState.isSubmitting}
                                         >
-                                            {form.formState.isSubmitting ? "Enviando..." : "Enviar mensaje"}
+                                            {form.formState.isSubmitting ? "Enviando solicitud..." : "Enviar propuesta"}
                                         </Button>
                                     </div>
-                                    {success && <div className="text-green-600 text-center mt-2">¡Gracias! Tu mensaje fue enviado correctamente.</div>}
-                                    {error && <div className="text-red-600 text-center mt-2">{error}</div>}
+                                    {success && (
+                                        <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 text-green-600 text-center mt-4 animate-in fade-in zoom-in-95">
+                                            ¡Mensaje recibido! Nos pondremos en contacto contigo en las próximas 24 horas.
+                                        </div>
+                                    )}
+                                    {error && (
+                                        <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 text-red-600 text-center mt-4 animate-in fade-in zoom-in-95">
+                                            {error}
+                                        </div>
+                                    )}
                                 </form>
                             </Form>
                         </div>
@@ -286,4 +310,4 @@ export function ContactFormSection() {
             </div>
         </section>
     )
-} 
+}

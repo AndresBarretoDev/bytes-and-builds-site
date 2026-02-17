@@ -13,14 +13,13 @@ const footerLinks = {
         { name: 'Soporte', href: '#servicios' }
     ],
     recursos: [
-        { name: 'Casos de Éxito', href: '#proyectos' },
-        { name: 'Blog', href: '#blog' },
-        { name: 'Preguntas Frecuentes', href: '#faq' },
-        { name: 'Guías', href: '#recursos' }
+        { name: 'Casos de Éxito', href: '#proyectos' }
     ]
 }
 
 export const FooterSection = () => {
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className="bg-muted/30 border-t border-border">
             <div className="container mx-auto px-6 max-w-7xl">
@@ -31,8 +30,8 @@ export const FooterSection = () => {
                     {/* Brand Section */}
                     <div className="lg:col-span-2 space-y-6">
                         <div className="flex items-center gap-3">
-                            <Logo className="w-8 h-8" />
-                            <span className="text-xl font-bold text-foreground">Bytes & Builds</span>
+                            <Logo variant="icon" className="w-10 h-10" />
+                            <span className="text-xl font-bold text-foreground tracking-tight">Bytes & Builds</span>
                         </div>
 
                         <p className="text-muted-foreground leading-relaxed max-w-md">
@@ -50,7 +49,7 @@ export const FooterSection = () => {
                             </div>
                             <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                 <Phone className="w-4 h-4 text-brand-accent" />
-                                <a href="tel:+5491123456789" className="hover:text-foreground transition-colors">
+                                <a href="tel:+573103269651" className="hover:text-foreground transition-colors">
                                     +57 310 326 9651
                                 </a>
                             </div>
@@ -129,16 +128,16 @@ export const FooterSection = () => {
                 {/* Bottom Bar */}
                 <div className="py-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="text-sm text-muted-foreground">
-                        © 2025 Bytes & Builds. Todos los derechos reservados.
+                        © {currentYear} Bytes & Builds. Todos los derechos reservados.
                     </div>
                     <div className="flex items-center gap-6 text-sm">
-                        <Link href="#privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
                             Privacidad
                         </Link>
-                        <Link href="#terminos" className="text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/terminos" className="text-muted-foreground hover:text-foreground transition-colors">
                             Términos
                         </Link>
-                        <Link href="#cookies" className="text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
                             Cookies
                         </Link>
                     </div>
