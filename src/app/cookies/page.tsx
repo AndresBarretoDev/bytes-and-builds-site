@@ -1,6 +1,6 @@
-import { HeroHeader } from '@/components/ui/hero-header'
 import { FooterSection } from '@/components/sections'
-import { Metadata } from 'next'
+import { PageSubNav } from '@/components/sections/project-detail/ProjectDetailNav'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Política de Cookies',
@@ -10,7 +10,11 @@ export const metadata: Metadata = {
 export default function CookiesPage() {
   return (
     <>
-      <HeroHeader />
+      <PageSubNav
+        backHref="/"
+        backLabel="Volver al inicio"
+        badgeLabel="Política de Cookies"
+      />
       <main id="main-content" className="pt-32 pb-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-heading mb-8">Política de Cookies</h1>
@@ -35,7 +39,7 @@ export default function CookiesPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">3. Tipos de Cookies que Utilizamos</h2>
+              <h2 className="text-2xl font-bold text-foreground">3. Tipos de cookies que utilizamos</h2>
               <ul className="list-disc pl-6 space-y-4">
                 <li>
                   <strong>Cookies Necesarias:</strong> Esenciales para que pueda navegar por el sitio y utilizar sus funciones.
@@ -50,14 +54,14 @@ export default function CookiesPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">4. Control de Cookies</h2>
+              <h2 className="text-2xl font-bold text-foreground">4. Control de cookies</h2>
               <p>
                 Usted puede controlar y/o eliminar las cookies como desee. La mayoría de los navegadores permiten gestionar las preferencias de cookies a través de su configuración. Tenga en cuenta que si desactiva las cookies, algunas partes de este sitio pueden no funcionar correctamente.
               </p>
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">5. Más Información</h2>
+              <h2 className="text-2xl font-bold text-foreground">5. Más información</h2>
               <p>
                 Si tiene alguna pregunta sobre nuestra Política de Cookies, no dude en contactarnos en info@bytesandbuilds.com.
               </p>

@@ -73,7 +73,7 @@ export const ProjectSidebar = ({
                     {liveUrl && (
                         <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full">
                             <Button className="w-full flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accent/90 text-white font-bold py-6 rounded-xl transition-all duration-300 mt-2 shadow-lg shadow-brand-accent/20">
-                                <span>Ver Proyecto en vivo</span>
+                                <span>Ver Proyecto</span>
                                 <ExternalLink size={18} />
                             </Button>
                         </a>

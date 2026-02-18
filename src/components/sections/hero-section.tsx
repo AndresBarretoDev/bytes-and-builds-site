@@ -141,7 +141,8 @@ export const HeroSection = () => {
                                     className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
                                     <Button
                                         asChild
-                                        size="lg">
+                                        size="lg"
+                                        className="hidden">
                                         <Link href="#contacto">
                                             Comenzar Proyecto
                                         </Link>
@@ -151,7 +152,7 @@ export const HeroSection = () => {
                                         size="lg"
                                         variant="outline">
                                         <Link href="#servicios">
-                                            Ver Servicios
+                                            Ver servicios
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>

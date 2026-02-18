@@ -108,7 +108,7 @@ export const ProjectsSection = () => {
                                             <Image
                                                 src={project.image}
                                                 alt={project.title}
-                                                width={800} 
+                                                width={800}
                                                 height={500}
                                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                             />

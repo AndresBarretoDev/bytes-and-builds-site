@@ -4,16 +4,45 @@ import { cn } from "@/lib/utils";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { ParallaxY, ParallaxMulti, ParallaxScale } from '@/components/ui/parallax';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
-import {
-    Code,
-    Settings,
-    MessageSquare,
-    Zap,
-    Globe,
-    Bot
-} from "lucide-react";
+import { Zap } from "lucide-react";
+import type { WPService } from '@/lib/wordpress';
 
-export const ServicesBentoSection = () => {
+// Fallback estático usado cuando WordPress no responde o no hay datos
+const FALLBACK_ITEMS: WPService[] = [
+    {
+        id: 1,
+        title: "Desarrollo Web",
+        description: "Sitios web de alto rendimiento diseñados para convertir visitantes en clientes fieles. Optimizamos cada detalle para SEO, velocidad y una experiencia de usuario impecable.",
+        imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+        id: 2,
+        title: "Consultoría Digital",
+        description: "Estrategia técnica para escalar tu negocio. Te ayudamos a elegir las herramientas correctas y optimizar tu flujo de trabajo digital.",
+        imageUrl: "https://images.unsplash.com/photo-1626602411112-10742f9a3ab8?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+        id: 3,
+        title: "Soporte Continuo",
+        description: "Tu tranquilidad es nuestra prioridad. Mantenimiento proactivo y soporte técnico especializado para que nunca dejes de operar.",
+        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+        id: 4,
+        title: "Automatización Inteligente",
+        description: "Elimina tareas repetitivas y reduce errores humanos. Creamos sistemas autónomos que trabajan 24/7, permitiéndote enfocar tu energía en lo que realmente importa.",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    },
+];
+
+interface ServicesBentoSectionProps {
+    services?: WPService[];
+}
+
+export const ServicesBentoSection = ({ services }: ServicesBentoSectionProps) => {
+    const items = services && services.length > 0 ? services : FALLBACK_ITEMS;
+    const total = items.length;
+
     return (
         <section id="servicios" className="relative py-16 md:py-20 overflow-hidden scroll-mt-24">
             {/* Subtle Background Effects with Parallax */}
@@ -68,18 +97,14 @@ export const ServicesBentoSection = () => {
                     <BentoGrid className="max-w-6xl mx-auto">
                         {items.map((item, i) => (
                             <BentoGridItem
-                                key={i}
+                                key={item.id}
                                 title={item.title}
                                 description={item.description}
-                                header={item.header}
-                                icon={item.icon}
+                                header={<ServiceHeader imageUrl={item.imageUrl} />}
                                 className={cn(
-                                    // Adaptamos los brand colors
                                     "bg-card border-border hover:border-brand-primary/30 hover:shadow-lg hover:shadow-brand-primary/5",
-                                    // Layout: Desarrollo Web será el destacado (col-span-2)
                                     i === 0 ? "md:col-span-2" : "",
-                                    // Automatización también destacado pero en diferente posición
-                                    i === 3 ? "md:col-span-2" : ""
+                                    i === total - 1 ? "md:col-span-2" : ""
                                 )}
                             />
                         ))}
@@ -90,18 +115,13 @@ export const ServicesBentoSection = () => {
     );
 };
 
-// Componente para el header visual de cada servicio con imágenes
 const ServiceHeader = ({ imageUrl }: { imageUrl: string }) => (
     <div className="w-full h-48 md:h-56 rounded-xl relative overflow-hidden group/image flex-shrink-0">
-        {/* Imagen de fondo */}
         <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover/image:scale-110"
             style={{ backgroundImage: `url(${imageUrl})` }}
         />
-        {/* Overlay para mejor contraste - Sutil gradiente oscuro */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-        {/* Elementos decorativos minimalistas */}
         <div className="absolute top-4 left-4 flex gap-1.5">
             <div className="w-1.5 h-1.5 bg-brand-accent rounded-full animate-pulse" />
             <div className="w-1.5 h-1.5 bg-white/20 rounded-full" />
@@ -109,38 +129,3 @@ const ServiceHeader = ({ imageUrl }: { imageUrl: string }) => (
         </div>
     </div>
 );
-
-const items = [
-    {
-        title: "Desarrollo Web",
-        description: "Sitios web de alto rendimiento diseñados para convertir visitantes en clientes fieles. Optimizamos cada detalle para SEO, velocidad y una experiencia de usuario impecable.",
-        header: <ServiceHeader
-            imageUrl="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop"
-        />,
-        // icon: <Code className="h-5 w-5 text-brand-primary" />,
-    },
-    {
-        title: "Consultoría Digital",
-        description: "Estrategia técnica para escalar tu negocio. Te ayudamos a elegir las herramientas correctas y optimizar tu flujo de trabajo digital.",
-        header: <ServiceHeader
-            imageUrl="https://images.unsplash.com/photo-1626602411112-10742f9a3ab8?q=80&w=2070&auto=format&fit=crop"
-        />,
-        // icon: <MessageSquare className="h-5 w-5 text-brand-accent" />,
-    },
-    {
-        title: "Soporte Continuo",
-        description: "Tu tranquilidad es nuestra prioridad. Mantenimiento proactivo y soporte técnico especializado para que nunca dejes de operar.",
-        header: <ServiceHeader
-            imageUrl="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2070&auto=format&fit=crop"
-        />,
-        // icon: <Settings className="h-5 w-5 text-brand-primary" />,
-    },
-    {
-        title: "Automatización Inteligente",
-        description: "Elimina tareas repetitivas y reduce errores humanos. Creamos sistemas autónomos que trabajan 24/7, permitiéndote enfocar tu energía en lo que realmente importa.",
-        header: <ServiceHeader
-            imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
-        />,
-        // icon: <Zap className="h-5 w-5 text-brand-accent" />,
-    },
-]; 

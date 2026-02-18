@@ -25,16 +25,16 @@ export const ProjectDetailSidebar = ({ client, services, technologies, timeline,
                         </div>
                     )}
 
-                           {services && services.length > 0 && (
-                               <div className="flex flex-col gap-1 border-b border-white/10 pb-4">
-                                   <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">Servicios</p>
-                                   <div className="flex flex-wrap gap-2 mt-3">
-                                       {services.map((service, index) => (
-                                           <Tag key={index}>{service}</Tag>
-                                       ))}
-                                   </div>
-                               </div>
-                           )}
+                    {services && services.length > 0 && (
+                        <div className="flex flex-col gap-1 border-b border-white/10 pb-4">
+                            <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">Servicios</p>
+                            <div className="flex flex-wrap gap-2 mt-3">
+                                {services.map((service, index) => (
+                                    <Tag key={index}>{service}</Tag>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     {technologies && technologies.length > 0 && (
                         <div className="flex flex-col gap-1 border-b border-white/10 pb-4">
@@ -60,7 +60,7 @@ export const ProjectDetailSidebar = ({ client, services, technologies, timeline,
                     {liveUrl && (
                         <Button asChild className="w-full bg-brand-accent hover:bg-brand-accent/90 text-white font-bold py-6 px-4 rounded-xl transition-all duration-300 mt-2 shadow-lg shadow-brand-accent/20">
                             <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                                Ver proyecto en vivo
+                                Ver proyecto
                                 <ExternalLink className="ml-2 w-4 h-4" />
                             </a>
                         </Button>

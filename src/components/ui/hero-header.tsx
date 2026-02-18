@@ -10,17 +10,17 @@ import { cn } from '@/lib/utils'
 import { useActiveSection } from '@/hooks/use-active-section'
 
 const menuItems = [
-    { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: 'Sobre Nosotros', href: '#sobre-nosotros' },
-    { name: 'Contacto', href: '#contacto' },
+    { name: 'Proyectos', section: '#proyectos' },
+    { name: 'Servicios', section: '#servicios' },
+    { name: 'Sobre Nosotros', section: '#sobre-nosotros' },
+    { name: 'Contacto', section: '#contacto' },
 ]
 
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
     // Observamos las secciones del menú + el home para limpiar el estado al subir
-    const activeSection = useActiveSection([...menuItems.map(item => item.href), '#home'])
+    const activeSection = useActiveSection([...menuItems.map(item => item.section), '#home'])
 
     // Optimización: Uso de IntersectionObserver para el estado Scrolled (Sentinel)
     React.useEffect(() => {
@@ -82,11 +82,12 @@ export const HeroHeader = () => {
                         <div className="absolute inset-0 m-auto hidden size-fit lg:block">
                             <ul className="flex gap-8 text-sm relative">
                                 {menuItems.map((item) => {
-                                    const isActive = activeSection === item.href;
+                                    const isActive = activeSection === item.section;
+                                    const href = `/${item.section}`;
                                     return (
                                         <li key={item.name} className="relative py-1">
                                             <Link
-                                                href={item.href}
+                                                href={href}
                                                 className={cn(
                                                     "transition-all duration-300 block",
                                                     isActive
@@ -118,30 +119,33 @@ export const HeroHeader = () => {
                         <div className="bg-background group-data-[state=active]:block lg:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
                             <div className="lg:hidden">
                                 <ul className="space-y-6 text-base">
-                                    {menuItems.map((item) => (
-                                        <li key={item.name}>
-                                            <Link
-                                                href={item.href}
-                                                onClick={() => setMenuState(false)}
-                                                className={cn(
-                                                    "transition-all duration-300 block",
-                                                    activeSection === item.href
-                                                        ? "text-brand-primary font-bold"
-                                                        : "text-foreground/80 font-medium"
-                                                )}
-                                            >
-                                                <span>{item.name}</span>
-                                            </Link>
-                                        </li>
-                                    ))}
+                                    {menuItems.map((item) => {
+                                        const href = `/${item.section}`
+                                        return (
+                                            <li key={item.name}>
+                                                <Link
+                                                    href={href}
+                                                    onClick={() => setMenuState(false)}
+                                                    className={cn(
+                                                        "transition-all duration-300 block",
+                                                        activeSection === item.section
+                                                            ? "text-brand-primary font-bold"
+                                                            : "text-foreground/80 font-medium"
+                                                    )}
+                                                >
+                                                    <span>{item.name}</span>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })}
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <Button
                                     asChild
                                     size="sm"
-                                    className="lg:inline-flex">
-                                    <Link href="#contacto">
+                                    className="lg:inline-flex " >
+                                    <Link href="/#contacto">
                                         <span>Comenzar Proyecto</span>
                                     </Link>
                                 </Button>

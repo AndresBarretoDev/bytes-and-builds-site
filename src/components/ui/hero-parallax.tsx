@@ -117,7 +117,7 @@ export const Header = () => {
     return (
         <div className="max-w-7xl relative mx-auto py-12 md:py-20 px-4 w-full left-0 top-0">
             <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-                Nuestros <br /> Proyectos
+                Nuestros <br /> <span className="bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary bg-clip-text text-transparent animate-gradient">Proyectos</span>
             </h1>
             <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
                 Transformamos ideas en soluciones digitales escalables. Cada proyecto refleja nuestra

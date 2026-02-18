@@ -36,7 +36,7 @@ const schema = z.object({
     email: z.string().email("Ingresa un correo electrónico válido"),
     phone: z.string().min(10, "Ingresa un número de contacto válido").regex(/^\d{10}$/, "Ingresa un número de contacto válido"),
     service: z.string().min(2, "Por favor, selecciona un servicio"),
-    message: z.string().min(50, "Cuéntanos un poco más sobre lo que necesitas (mín. 50 caracteres)").max(1000, "El mensaje puede ser mas conciso"),
+    message: z.string().min(50, "Cuéntanos un poco más sobre lo que necesitas (mín. 50 caracteres)").max(1000, "¡Wow, qué buena historia! Acorta un poco el texto y el resto lo conversamos en una reunión."),
     privacy: z.boolean().refine(val => val, { message: "Es necesario aceptar la política de privacidad" })
 })
 
@@ -249,14 +249,15 @@ export function ContactFormSection() {
                                                                 {...field}
                                                             />
                                                         </FormControl>
-                                                        <FormMessage className="text-xs" />
-
-                                                        <span className={cn("text-xs text-muted-foreground absolute bottom-0 right-0 ", {
-                                                            "text-destructive": field.value.length < 50 || field.value.length > 1000,
-                                                            "text-muted-foreground": field.value.length <= 1000
-                                                        })} title="Caracteres restantes" aria-label="Caracteres restantes">
-                                                            {field.value.length} / 1000 caracteres
-                                                        </span>
+                                                        <div className="flex flex-row gap-2">
+                                                            <FormMessage className="text-xs" />
+                                                            <span className={cn("text-xs text-muted-foreground flex-shrink-0 ml-auto", {
+                                                                "text-destructive": field.value.length < 50 || field.value.length > 1000,
+                                                                "text-muted-foreground": field.value.length <= 1000
+                                                            })} title="Caracteres restantes" aria-label="Caracteres restantes">
+                                                                {field.value.length} / 1000 caracteres
+                                                            </span>
+                                                        </div>
 
                                                     </FormItem>
                                                 )}

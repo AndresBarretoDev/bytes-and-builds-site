@@ -9,6 +9,13 @@ const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 const WP_USER = process.env.WORDPRESS_API_USER;
 const WP_PASSWORD = process.env.WORDPRESS_APP_PASSWORD;
 
+export interface WPService {
+    id: number;
+    title: string;
+    description: string;
+    imageUrl: string;
+}
+
 export interface WPProject {
     id: number;
     title: string;
@@ -65,6 +72,21 @@ async function fetchWP(endpoint: string) {
 }
 
 export const WordPressService = {
+    /**
+     * Obtiene todos los servicios del CPT 'services'
+     */
+    async getServices(): Promise<WPService[]> {
+        const posts = await fetchWP('/services?_embed&per_page=100');
+        return posts.map((post: any): WPService => ({
+            id: post.id,
+            title: post.title.rendered,
+            description: post.excerpt.rendered.replace(/<[^>]*>/g, '').trim(),
+            imageUrl:
+                post._embedded?.['wp:featuredmedia']?.[0]?.source_url ||
+                `https://picsum.photos/seed/${post.id}/800/600`,
+        }));
+    },
+
     /**
      * Obtiene todos los proyectos mapeados al formato de la UI
      */

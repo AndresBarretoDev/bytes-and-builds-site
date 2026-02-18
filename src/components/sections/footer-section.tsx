@@ -7,13 +7,13 @@ import Link from 'next/link'
 
 const footerLinks = {
     servicios: [
-        { name: 'Desarrollo Web', href: '#servicios' },
-        { name: 'Automatización', href: '#servicios' },
-        { name: 'Consultoría', href: '#servicios' },
-        { name: 'Soporte', href: '#servicios' }
+        { name: 'Desarrollo Web', href: '/#servicios' },
+        { name: 'Automatización', href: '/#servicios' },
+        { name: 'Consultoría', href: '/#servicios' },
+        { name: 'Soporte', href: '/#servicios' }
     ],
     recursos: [
-        { name: 'Casos de Éxito', href: '#proyectos' }
+        { name: 'Casos de Éxito', href: '/#proyectos' }
     ]
 }
 
@@ -30,14 +30,8 @@ export const FooterSection = () => {
                     {/* Brand Section */}
                     <div className="lg:col-span-2 space-y-6">
                         <div className="flex items-center gap-3">
-                            <Logo variant="icon" className="w-10 h-10" />
-                            <span className="text-xl font-bold text-foreground tracking-tight">Bytes & Builds</span>
+                            <Logo size="sm" priority={true} />
                         </div>
-
-                        <p className="text-muted-foreground leading-relaxed max-w-md">
-                            Transformamos PYMEs con tecnología simple y efectiva.
-                            Sitios web que venden más y sistemas que ahorran tiempo.
-                        </p>
 
                         {/* Contact Info */}
                         <div className="space-y-3">
@@ -62,7 +56,7 @@ export const FooterSection = () => {
                         {/* Social Links */}
                         <div className="flex items-center gap-4">
                             <a
-                                href="https://www.instagram.com/bytesandbuilds/"
+                                href="https://www.instagram.com/bytes_and_builds/"
                                 className="flex items-center justify-center w-11 h-11 rounded-lg bg-card border border-border hover:border-brand-accent/40 transition-colors group"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -115,9 +109,9 @@ export const FooterSection = () => {
                         </nav>
 
                         {/* CTA in Footer */}
-                        <div className="pt-4">
+                        <div className="pt-4" hidden>
                             <Button size="sm" asChild className="w-full">
-                                <Link href="#contacto">
+                                <Link href="/#contacto">
                                     Iniciar Proyecto
                                 </Link>
                             </Button>

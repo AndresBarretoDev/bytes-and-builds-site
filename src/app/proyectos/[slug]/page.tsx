@@ -4,7 +4,7 @@ import { FooterSection } from '@/components/sections';
 import { ScrollReveal } from '@/components/ui/scroll-reveal';
 
 // Importación de componentes de detalle (Responsabilidad Única)
-import { ProjectDetailNav } from '@/components/sections/project-detail/ProjectDetailNav';
+import { PageSubNav } from '@/components/sections/project-detail/ProjectDetailNav';
 import { ProjectDetailHero } from '@/components/sections/project-detail/ProjectDetailHero';
 import { ProjectDetailImage } from '@/components/sections/project-detail/ProjectDetailImage';
 import { ProjectDetailOverview } from '@/components/sections/project-detail/ProjectDetailOverview';
@@ -48,10 +48,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
     const nextProject = await WordPressService.getNextProject(project.id);
 
+    const { testimonial } = project;
+    const hasTestimonial = !!(testimonial?.quote && testimonial?.author && testimonial?.role);
+
     return (
         <div className="min-h-screen bg-background relative">
             {/* Navegación Minimalista de Retorno */}
-            <ProjectDetailNav />
+            <PageSubNav />
 
             <main className="flex-grow">
                 <div className="flex flex-col items-center w-full">
@@ -133,13 +136,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                                         />
                                     </ScrollReveal>
 
-                                    {project.testimonial && (
+                                    {hasTestimonial && (
                                         <ScrollReveal direction="right" delay={0.5}>
                                             <ProjectDetailTestimonial
-                                                quote={project.testimonial.quote}
-                                                author={project.testimonial.author}
-                                                role={project.testimonial.role}
-                                                avatar={project.testimonial.avatar}
+                                                quote={testimonial!.quote}
+                                                author={testimonial!.author}
+                                                role={testimonial!.role}
+                                                avatar={testimonial?.avatar}
                                             />
                                         </ScrollReveal>
                                     )}

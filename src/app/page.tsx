@@ -1,6 +1,6 @@
 import {
   HeroSection,
-  ServicesBentoSection,
+  ServicesBentoWrapper,
   ValuePropositionHighlightSection,
   ProjectsParallaxSection,
   ProcessSection,
@@ -14,7 +14,7 @@ export default function Home() {
       {/* Secciones actuales del home-v2 */}
       <HeroSection />
       <ProjectsParallaxSection />
-      <ServicesBentoSection />
+      <ServicesBentoWrapper />
       <ValuePropositionHighlightSection />
       <ProcessSection />
       <ContactFormSection />

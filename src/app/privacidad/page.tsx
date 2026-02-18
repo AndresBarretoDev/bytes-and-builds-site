@@ -1,6 +1,6 @@
-import { HeroHeader } from '@/components/ui/hero-header'
 import { FooterSection } from '@/components/sections'
-import { Metadata } from 'next'
+import { PageSubNav } from '@/components/sections/project-detail/ProjectDetailNav'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Política de Privacidad',
@@ -10,7 +10,11 @@ export const metadata: Metadata = {
 export default function PrivacidadPage() {
   return (
     <>
-      <HeroHeader />
+      <PageSubNav
+        backHref="/"
+        backLabel="Volver al inicio"
+        badgeLabel="Política de Privacidad"
+      />
       <main id="main-content" className="pt-32 pb-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-heading mb-8">Política de Privacidad</h1>
@@ -23,7 +27,7 @@ export default function PrivacidadPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">2. Información que Recopilamos</h2>
+              <h2 className="text-2xl font-bold text-foreground">2. Información que recopilamos</h2>
               <p>
                 Recopilamos información que usted nos proporciona directamente, como cuando completa nuestro formulario de contacto, se suscribe a nuestro boletín o solicita un presupuesto. Esto puede incluir:
               </p>
@@ -36,7 +40,7 @@ export default function PrivacidadPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">3. Uso de la Información</h2>
+              <h2 className="text-2xl font-bold text-foreground">3. Uso de la información</h2>
               <p>
                 Utilizamos la información recopilada para:
               </p>
@@ -49,21 +53,21 @@ export default function PrivacidadPage() {
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">4. Protección de Datos</h2>
+              <h2 className="text-2xl font-bold text-foreground">4. Protección de datos</h2>
               <p>
                 Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos personales contra el acceso no autorizado, la pérdida o la alteración. Sus datos se almacenan en servidores seguros y solo son accesibles por personal autorizado.
               </p>
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">5. Sus Derechos</h2>
+              <h2 className="text-2xl font-bold text-foreground">5. Sus derechos</h2>
               <p>
                 Usted tiene derecho a acceder, rectificar o eliminar sus datos personales en cualquier momento. Para ejercer estos derechos, puede ponerse en contacto con nosotros a través de info@bytesandbuilds.com.
               </p>
             </section>
 
             <section className="space-y-4">
-              <h2 className="text-2xl font-bold text-foreground">6. Cambios en esta Política</h2>
+              <h2 className="text-2xl font-bold text-foreground">6. Cambios en esta política</h2>
               <p>
                 Nos reservamos el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios se publicarán en esta página con una fecha de actualización revisada.
               </p>
