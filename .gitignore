@@ -111,6 +111,7 @@ Thumbs.db
 AGENTS.md
 CLAUDE.md
 .cursorrules
+.claude/
 
 # TaskMaster (exclude local state and reports)
 .taskmaster/state.json
