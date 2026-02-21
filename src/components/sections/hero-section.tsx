@@ -32,7 +32,7 @@ export const HeroSection = () => {
     return (
         <>
             <HeroHeader />
-            <main className="overflow-hidden">
+            <main id="main-content" className="overflow-hidden relative">
                 <div
                     aria-hidden
                     className="z-[2] absolute inset-0 pointer-events-none isolate opacity-50 contain-strict hidden lg:block">
@@ -58,7 +58,7 @@ export const HeroSection = () => {
                         <div className="h-[80rem] -translate-y-[350px] w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(58,119,211,0.04)_0,rgba(58,119,211,0.02)_80%,transparent_100%)]" />
                     </ParallaxScale>
                 </div>
-                <section>
+                <section id="home" className="relative">
                     <div className="relative pt-24 md:pt-36">
                         <AnimatedGroup
                             variants={{
@@ -118,7 +118,7 @@ export const HeroSection = () => {
                                         </div>
                                     </Link>
 
-                                    <h1 className="mt-8 max-w-4xl mx-auto text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem] font-heading">
+                                    <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl leading-none md:text-7xl lg:mt-16 xl:text-[5.25rem] font-heading">
                                         Desarrollo Web y <span className="text-gradient">Automatización</span> para PYMEs
                                     </h1>
                                     <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
@@ -141,7 +141,8 @@ export const HeroSection = () => {
                                     className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
                                     <Button
                                         asChild
-                                        size="lg">
+                                        size="lg"
+                                        className="hidden">
                                         <Link href="#contacto">
                                             Comenzar Proyecto
                                         </Link>
@@ -151,7 +152,7 @@ export const HeroSection = () => {
                                         size="lg"
                                         variant="outline">
                                         <Link href="#servicios">
-                                            Ver Servicios
+                                            Ver servicios
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>
@@ -188,12 +189,12 @@ export const HeroSection = () => {
                                         </ParallaxY>
                                         <ParallaxY speed={0.25}>
                                             <Image
-                                            className="z-2 border-border/25 aspect-[16/9] relative rounded-2xl border dark:hidden"
-                                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="Dashboard de automatización empresarial"
-                                            width={2070}
-                                            height={1164}
-                                        />
+                                                className="z-2 border-border/25 aspect-[16/9] relative rounded-2xl border dark:hidden"
+                                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                                alt="Dashboard de automatización empresarial"
+                                                width={2070}
+                                                height={1164}
+                                            />
                                         </ParallaxY>
                                     </div>
                                 </ParallaxScale>

@@ -20,11 +20,10 @@ export const HeroParallax = ({
     const productsPerRow = 5;
     const numberOfRows = Math.ceil(products.length / productsPerRow);
 
-    // Cálculo dinámico de altura escalable
-    // Base: 250vh para 3 filas, escala proporcionalmente con buffer extra
-    const baseHeight = 250; // vh para ~3 filas (más espacio para parallax)
+    // Cálculo dinámico equilibrado: ni tan largo como antes (333vh) ni tan corto como recién (240vh)
+    const baseHeight = 220; // vh base para el efecto (Punto medio entre 180 y 250)
     const baseRows = 3;
-    const heightInVh = Math.max(200, Math.min(400, baseHeight * (numberOfRows / baseRows)));
+    const heightInVh = Math.max(200, Math.min(350, baseHeight * (numberOfRows / baseRows)));
 
     const rows = [];
     for (let i = 0; i < numberOfRows; i++) {
@@ -90,14 +89,19 @@ export const HeroParallax = ({
                                 <ProductCard
                                     product={product}
                                     translate={index % 2 === 0 ? translateX : translateXReverse}
-                                    key={product.title}
+                                    key={product.id}
                                 />
                             ))}
                         </motion.div>
                     ))}
                 </motion.div>
                 {/* CTA to See More */}
-                <ScrollReveal direction="up" delay={0.4} className="absolute bottom-0 left-0 right-0 mx-auto !-translate-y-[10vh]">
+                <ScrollReveal
+                    direction="up"
+                    delay={0.4}
+                    className="absolute left-0 right-0 mx-auto"
+                    style={{ bottom: `calc(${heightInVh}vh - 93%)` }}
+                >
                     <ProjectCTACard />
                 </ScrollReveal>
             </div>
@@ -113,7 +117,7 @@ export const Header = () => {
     return (
         <div className="max-w-7xl relative mx-auto py-12 md:py-20 px-4 w-full left-0 top-0">
             <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-                Nuestros <br /> Proyectos
+                Nuestros <br /> <span className="bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary bg-clip-text text-transparent animate-gradient">Proyectos</span>
             </h1>
             <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
                 Transformamos ideas en soluciones digitales escalables. Cada proyecto refleja nuestra

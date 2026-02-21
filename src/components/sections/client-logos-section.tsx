@@ -24,43 +24,38 @@ import { ChevronRight } from 'lucide-react'
 
 const clientLogos = [
     {
-        name: "Cliente Ejemplo 1",
-        src: "https://cdn.worldvectorlogo.com/logos/shopify.svg",
+        name: "protección y estrategia legal",
+        src: "/clients/proteccion-logo.svg",
         height: "32"
     },
     {
-        name: "Cliente Ejemplo 2",
-        src: "https://cdn.worldvectorlogo.com/logos/stripe-4.svg",
-        height: "24"
-    },
-    {
-        name: "Cliente Ejemplo 3",
-        src: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",
-        height: "24"
-    },
-    {
-        name: "Cliente Ejemplo 4",
-        src: "https://cdn.worldvectorlogo.com/logos/zapier.svg",
+        name: "All America Lacrosse",
+        src: "/clients/all-america-logo.webp",
         height: "32"
     },
     {
-        name: "Cliente Ejemplo 5",
-        src: "https://cdn.worldvectorlogo.com/logos/google-analytics-4.svg",
-        height: "24"
-    },
-    {
-        name: "Cliente Ejemplo 6",
-        src: "https://cdn.worldvectorlogo.com/logos/hubspot-2.svg",
+        name: "New Balance",
+        src: "/clients/new-balance.webp",
         height: "32"
     },
     {
-        name: "Cliente Ejemplo 7",
-        src: "https://cdn.worldvectorlogo.com/logos/mailchimp-freddie-icon.svg",
-        height: "24"
+        name: "Adver Serra",
+        src: "/clients/adver-serra.webp",
+        height: "32"
     },
     {
-        name: "Cliente Ejemplo 8",
-        src: "https://cdn.worldvectorlogo.com/logos/airtable.svg",
+        name: "House Cat Studio",
+        src: "/clients/logo-house-cat.webp",
+        height: "32"
+    },
+    {
+        name: "Consumidores con tal cual",
+        src: "/clients/logo_ctc.webp",
+        height: "32"
+    },
+    {
+        name: "Ciao creative",
+        src: "/clients/logo_ciao.webp",
         height: "32"
     }
 ]
@@ -91,32 +86,40 @@ export const ClientLogosSection = () => {
                     {/* Infinite scroll container */}
                     <div className="flex animate-infinite-scroll hover:pause-animation">
                         {/* First set of logos */}
-                        <div className="flex items-center space-x-16 px-8">
+                        <div className="flex items-center gap-12 px-8">
                             {clientLogos.map((client, index) => (
-                                <div key={`first-${index}`} className="flex-shrink-0">
+                                <div
+                                    key={`first-${index}`}
+                                    className="flex-shrink-0 flex items-center justify-center"
+                                    style={{ minWidth: '120px', height: '48px' }}
+                                >
                                     <Image
-                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0 object-contain"
                                         src={client.src}
                                         alt={client.name}
-                                        height={parseInt(client.height)}
-                                        width={parseInt(client.height) * 3} // Assuming a 3:1 aspect ratio
-                                        style={{ height: `${client.height}px`, width: 'auto' }}
+                                        height={48}
+                                        width={120}
+                                        style={{ maxHeight: '48px', width: 'auto' }}
                                     />
                                 </div>
                             ))}
                         </div>
 
                         {/* Duplicate set for seamless loop */}
-                        <div className="flex items-center space-x-16 px-8">
+                        <div className="flex items-center gap-12 px-8">
                             {clientLogos.map((client, index) => (
-                                <div key={`second-${index}`} className="flex-shrink-0">
+                                <div
+                                    key={`second-${index}`}
+                                    className="flex-shrink-0 flex items-center justify-center"
+                                    style={{ minWidth: '120px', height: '48px' }}
+                                >
                                     <Image
-                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                                        className="opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0 object-contain"
                                         src={client.src}
                                         alt={client.name}
-                                        height={parseInt(client.height)}
-                                        width={parseInt(client.height) * 3} // Assuming a 3:1 aspect ratio
-                                        style={{ height: `${client.height}px`, width: 'auto' }}
+                                        height={48}
+                                        width={120}
+                                        style={{ maxHeight: '48px', width: 'auto' }}
                                     />
                                 </div>
                             ))}
@@ -127,7 +130,7 @@ export const ClientLogosSection = () => {
                 {/* Call to action link */}
                 <div className="text-center mt-12">
                     <Link
-                        href="#casos-de-exito"
+                        href="#proyectos"
                         className="inline-flex items-center text-sm text-muted-foreground hover:text-brand-primary transition-colors duration-300 group">
                         <span>Conoce nuestros casos de éxito</span>
                         <ChevronRight className="ml-1 size-4 transition-transform group-hover:translate-x-1" />

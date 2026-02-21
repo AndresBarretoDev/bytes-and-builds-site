@@ -66,7 +66,7 @@ const Logo = ({
         width={width}
         height={height}
         priority={priority}
-        className="object-contain"
+        className="object-contain w-auto h-auto"
       />
     </div>
   );

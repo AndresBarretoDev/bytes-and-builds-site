@@ -1,20 +1,20 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { IBM_Plex_Sans, Bricolage_Grotesque } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import LenisProvider from '@/components/providers/lenis-provider';
-import { StagewiseToolbar } from '@stagewise/toolbar-next';
-import { ReactPlugin } from '@stagewise-plugins/react';
 
-const inter = Inter({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ibm-plex-sans',
   display: 'swap',
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ['latin'],
-  variable: '--font-plus-jakarta-sans',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-bricolage-grotesque',
   display: 'swap',
 });
 
@@ -129,7 +129,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <link rel="manifest" href="/favicons.ico/manifest.json" />
         <meta
@@ -138,19 +138,19 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${plusJakartaSans.variable} font-sans antialiased`}
+        className={`${ibmPlexSans.variable} ${bricolageGrotesque.variable} font-sans antialiased`}
       >
+        {/* Skip link for keyboard navigation - WCAG AA requirement */}
+        <a href="#main-content" className="skip-link">
+          Saltar al contenido principal
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <StagewiseToolbar
-            config={{
-              plugins: [ReactPlugin],
-            }}
-          />
+
           <LenisProvider>{children}</LenisProvider>
         </ThemeProvider>
       </body>
