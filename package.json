@@ -18,6 +18,9 @@
   ],
   "author": "Bytes & Builds",
   "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-aspect-ratio": "^1.1.8",
