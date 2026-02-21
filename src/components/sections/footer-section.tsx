@@ -131,9 +131,6 @@ export const FooterSection = () => {
                         <Link href="/terminos" className="text-muted-foreground hover:text-foreground transition-colors">
                             Términos
                         </Link>
-                        <Link href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
-                            Cookies
-                        </Link>
                     </div>
                 </div>
             </div>
