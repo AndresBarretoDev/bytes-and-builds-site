@@ -34,8 +34,13 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
       }),
     });
     const data = await res.json();
+    // DEBUG TEMPORAL — eliminar después de diagnosticar
+    console.log('[Turnstile] secret key present:', !!process.env.TURNSTILE_SECRET_KEY);
+    console.log('[Turnstile] token length:', token?.length);
+    console.log('[Turnstile] siteverify response:', JSON.stringify(data));
     return data.success === true;
-  } catch {
+  } catch (err) {
+    console.error('[Turnstile] fetch error:', err);
     return false;
   }
 }
