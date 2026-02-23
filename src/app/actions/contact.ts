@@ -24,7 +24,7 @@ function checkRateLimit(ip: string): boolean {
 // --- Turnstile Verification ---
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   try {
-    const res = await fetch('https://challenges.cloudflare.com/turnstile/v1/siteverify', {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
