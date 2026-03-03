@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { IBM_Plex_Sans, Bricolage_Grotesque } from 'next/font/google';
-import Script from 'next/script';
+import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import LenisProvider from '@/components/providers/lenis-provider';
-
-const GTM_ID = 'GTM-NQSC4WGG';
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -133,6 +131,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning data-scroll-behavior="smooth">
+      <GoogleTagManager gtmId="GTM-NQSC4WGG" />
       <head>
         <link rel="manifest" href="/favicons.ico/manifest.json" />
         <meta
@@ -143,25 +142,6 @@ export default function RootLayout({
       <body
         className={`${ibmPlexSans.variable} ${bricolageGrotesque.variable} font-sans antialiased`}
       >
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`,
-          }}
-        />
         {/* Skip link for keyboard navigation - WCAG AA requirement */}
         <a href="#main-content" className="skip-link">
           Saltar al contenido principal
