@@ -17,7 +17,7 @@ export const ProjectCTACard = ({
 }: ProjectCTACardProps) => {
     return (
         <div className="text-center">
-            <div className="inline-flex items-center gap-4 p-6 bg-card border border-border rounded-2xl">
+            <div className="inline-flex items-center gap-4 p-6 bg-card border border-border rounded-2xl flex-col md:flex-row">
                 <div className="space-y-2 text-left">
                     <h3 className="text-lg font-semibold text-foreground">
                         {title}
