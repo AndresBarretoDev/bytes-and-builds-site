@@ -30,9 +30,9 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
                 y: -20,
             }}
             key={product.id}
-            className="group/product h-96 w-[30rem] relative shrink-0"
+            className="group/product h-72 w-[80vw] md:h-96 md:w-[30rem] relative shrink-0"
         >
-            <Link href={product.link} className="block h-full w-full relative overflow-hidden rounded-xl">
+            <Link href={product.link} className="block h-full w-full relative overflow-hidden rounded-xl shadow-md border border-brand-primary/10">
                 <Image
                     src={product.thumbnail}
                     height={600}
@@ -41,11 +41,11 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
                     alt={product.title}
                 />
 
-                <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-90 bg-black pointer-events-none transition-opacity duration-300"></div>
+                <div className="absolute inset-0 h-full w-full opacity-80 md:opacity-0 md:group-hover/product:opacity-90 bg-black pointer-events-none transition-opacity duration-300"></div>
 
                 {/* Badge flotante */}
                 {product.badge && (
-                    <div className="absolute top-4 left-4 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300">
+                    <div className="absolute top-4 left-4 opacity-100 md:opacity-0 md:group-hover/product:opacity-100 transition-opacity duration-300">
                         <span className="bg-brand-accent text-white px-3 py-1 rounded-full text-sm font-medium">
                             {product.badge}
                         </span>
@@ -53,7 +53,7 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
                 )}
 
                 {/* Ícono visual */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 z-10">
+                <div className="absolute top-4 right-4 opacity-100 md:opacity-0 md:group-hover/product:opacity-100 transition-opacity duration-300 z-10">
                     <div className=" hover:bg-brand-accent text-white p-3 rounded-lg transition-colors duration-200">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -62,7 +62,7 @@ export const ProductCard = ({ product, translate }: ProductCardProps) => {
                 </div>
 
                 {/* Contenido principal */}
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 text-white">
+                <div className="absolute bottom-4 left-4 right-4 opacity-100 md:opacity-0 md:group-hover/product:opacity-100 transition-opacity duration-300 text-white">
                     <h2 className="text-xl font-bold mb-2 line-clamp-2">
                         {product.title.replace("|", "")}
                     </h2>
