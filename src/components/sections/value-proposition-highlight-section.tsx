@@ -33,13 +33,13 @@ export function ValuePropositionHighlightSection() {
 
             <HeroHighlight>
                 <ScrollReveal direction="up" delay={0.2}>
-                    <h1 className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto">
+                    <h3 className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto">
                         En Bytes & Builds transformamos ideas en{' '}
                         <Highlight>
                             soluciones digitales escalables
                         </Highlight>{' '}
                         que impulsan el crecimiento de tu negocio.
-                    </h1>
+                    </h3>
                 </ScrollReveal>
             </HeroHighlight>
         </section>

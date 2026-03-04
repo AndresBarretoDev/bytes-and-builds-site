@@ -134,7 +134,10 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning data-scroll-behavior="smooth">
       <GoogleTagManager gtmId="GTM-NQSC4WGG" />
       <head>
-        <link rel="manifest" href="/favicons.ico/manifest.json" />
+        {/* Warm up third-party connections before they're needed */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://challenges.cloudflare.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta
           name="msapplication-config"
           content="/favicons.ico/browserconfig.xml"
