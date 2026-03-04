@@ -15,6 +15,7 @@ import { ProjectDetailStats } from '@/components/sections/project-detail/Project
 import { ProjectDetailSidebar } from '@/components/sections/project-detail/ProjectDetailSidebar';
 import { ProjectDetailTestimonial } from '@/components/sections/project-detail/ProjectDetailTestimonial';
 import { ProjectDetailNext } from '@/components/sections/project-detail/ProjectDetailNext';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 
 interface ProjectPageProps {
     params: Promise<{ slug: string }>;
@@ -53,6 +54,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
     return (
         <div className="min-h-screen bg-background relative">
+            {/* Fuerza scroll al tope al navegar entre proyectos (fix Lenis + Next.js) */}
+            <ScrollToTop />
             {/* Navegación Minimalista de Retorno */}
             <PageSubNav />
 

@@ -19,7 +19,7 @@ export const ProjectDetailNext = ({ title, slug }: ProjectDetailNextProps) => {
                     href={`/proyectos/${slug}`}
                     className="group flex items-center gap-4 text-brand-primary dark:text-white font-bold text-xl no-underline"
                 >
-                    <span className="group-hover:mr-2 transition-all">Ver Proyecto</span>
+                    <span className="group-hover:mr-2 transition-all">Ver proyecto</span>
                     <div className="bg-white dark:bg-gray-800 p-4 rounded-full shadow-sm group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
                         <ArrowRight size={24} />
                     </div>
@@ -28,4 +28,3 @@ export const ProjectDetailNext = ({ title, slug }: ProjectDetailNextProps) => {
         </section>
     );
 };
-
