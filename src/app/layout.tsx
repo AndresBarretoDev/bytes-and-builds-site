@@ -4,6 +4,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import LenisProvider from '@/components/providers/lenis-provider';
+import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -154,6 +155,7 @@ export default function RootLayout({
         >
 
           <LenisProvider>{children}</LenisProvider>
+          <WhatsAppButton />
         </ThemeProvider>
       </body>
     </html>

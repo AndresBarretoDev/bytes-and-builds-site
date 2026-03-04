@@ -46,12 +46,24 @@ export const HeroHeader = () => {
         }
     }, [])
 
-    const handleMenuToggle = () => {
-        setMenuState(!menuState)
-    }
+    // Bloquear scroll del body mientras el menú mobile está abierto
+    React.useEffect(() => {
+        document.body.style.overflow = menuState ? 'hidden' : ''
+        return () => { document.body.style.overflow = '' }
+    }, [menuState])
+
+    const handleMenuToggle = () => setMenuState(prev => !prev)
 
     return (
         <header>
+            {/* Overlay mobile: bloquea interacción con el contenido y cierra el menú al tocarlo */}
+            {menuState && (
+                <div
+                    aria-hidden="true"
+                    onClick={() => setMenuState(false)}
+                    className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[1px] lg:hidden"
+                />
+            )}
             <nav
                 aria-label="Navegación principal"
                 data-state={menuState && 'active'}
@@ -65,6 +77,7 @@ export const HeroHeader = () => {
                             <Link
                                 href="/"
                                 aria-label="home"
+                                onClick={() => setMenuState(false)}
                                 className="flex items-center space-x-2">
                                 <Logo size="sm" priority={true} />
                             </Link>
@@ -144,8 +157,8 @@ export const HeroHeader = () => {
                                 <Button
                                     asChild
                                     size="sm"
-                                    className="lg:inline-flex " >
-                                    <Link href="/#contacto">
+                                    className="lg:inline-flex">
+                                    <Link href="/#contacto" onClick={() => setMenuState(false)}>
                                         <span>Comenzar Proyecto</span>
                                     </Link>
                                 </Button>
