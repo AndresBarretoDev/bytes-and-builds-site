@@ -115,7 +115,6 @@ export const ProcessSection = () => {
 
                         <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                             Un proceso probado que transforma ideas en soluciones digitales exitosas.
-                            Transparente, eficiente y enfocado en resultados medibles.
                         </p>
                     </div>
                 </ScrollReveal>

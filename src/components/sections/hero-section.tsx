@@ -28,6 +28,26 @@ const transitionVariants = {
     },
 }
 
+// LCP-safe: starts fully visible so the browser paints it immediately.
+// Only animates blur + y (no opacity) to preserve the entrance feel.
+const lcpVariants = {
+    item: {
+        hidden: {
+            filter: 'blur(10px)',
+            y: 10,
+        },
+        visible: {
+            filter: 'blur(0px)',
+            y: 0,
+            transition: {
+                type: 'spring' as const,
+                bounce: 0.3,
+                duration: 1.2,
+            },
+        },
+    },
+}
+
 export const HeroSection = () => {
     return (
         <>
@@ -117,10 +137,16 @@ export const HeroSection = () => {
                                             </div>
                                         </div>
                                     </Link>
+                                </AnimatedGroup>
 
+                                {/* H1 usa lcpVariants (sin opacity:0) para que el LCP se registre al instante */}
+                                <AnimatedGroup variants={lcpVariants}>
                                     <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl leading-none md:text-7xl lg:mt-16 xl:text-[5.25rem] font-heading">
                                         Desarrollo Web y <span className="text-gradient">Automatización</span> para PYMEs
                                     </h1>
+                                </AnimatedGroup>
+
+                                <AnimatedGroup variants={transitionVariants}>
                                     <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
                                         Sitios web que venden más y sistemas que ahorran tiempo. Especializados en hacer crecer PYMEs con tecnología simple y efectiva.
                                     </p>
@@ -171,13 +197,13 @@ export const HeroSection = () => {
                                 },
                                 ...transitionVariants,
                             }}>
-                            <div className="relative md:-mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
+                            <div className="relative mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
                                 <div
                                     aria-hidden
                                     className="bg-gradient-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
                                 />
                                 <ParallaxScale speed={0.15} className="relative mx-auto max-w-6xl">
-                                    <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
+                                    <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background overflow-hidden rounded-2xl p-4 shadow-lg">
                                         <ParallaxY speed={0.2}>
                                             <Image
                                                 className="bg-background aspect-[16/9] relative hidden rounded-2xl dark:block"
